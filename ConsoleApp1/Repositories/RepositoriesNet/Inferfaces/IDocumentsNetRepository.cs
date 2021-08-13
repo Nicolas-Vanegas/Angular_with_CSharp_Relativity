@@ -4,6 +4,6 @@ namespace ConsoleApp1.RepositoryNet.Inferfaces
 {
     public interface IDocumentsNetRepository
     {
-        List<string> Documents(int savedSearchId);
+        List<string> Documents(int savedSearchId, ServicesMgr helper);
     }
 }

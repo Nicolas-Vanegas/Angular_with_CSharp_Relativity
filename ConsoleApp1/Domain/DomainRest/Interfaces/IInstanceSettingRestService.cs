@@ -1,6 +1,6 @@
-﻿namespace ConsoleApp1
+﻿namespace ConsoleApp1.Domain.DomainRest.Interfaces
 {
-    public interface IInstanceSettingsNetRepository
+    public interface IInstanceSettingRestService
     {
         int CreateInstanceSetting(InstanceSettingObject instanceSettingObject);
         int GetInstanceSettingValue(int instanceSettingId);

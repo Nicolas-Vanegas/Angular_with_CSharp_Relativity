@@ -9,15 +9,9 @@ namespace ConsoleApp1.RepositoryNet
 {
     public class DocumentsNetRepository : IDocumentsNetRepository
     {
-        private readonly ServicesMgr _helper;
-        public DocumentsNetRepository(ServicesMgr helper)
+        public List<string> Documents(int savedSearchId, ServicesMgr helper)
         {
-            _helper = helper;
-        }
-
-        public List<string> Documents(int savedSearchId)
-        {
-            var _serviceFactory = _helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
+            var _serviceFactory = helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
             try
             {
 

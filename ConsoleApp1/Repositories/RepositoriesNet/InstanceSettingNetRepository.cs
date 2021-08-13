@@ -5,15 +5,9 @@ namespace ConsoleApp1
 {
     public class InstanceSettingNetRepository : IInstanceSettingsNetRepository
     {
-        private readonly ServicesMgr _helper;
-
-        public InstanceSettingNetRepository(ServicesMgr helper)
+        public int CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper)
         {
-            _helper = helper;
-        }
-        public int CreateInstanceSetting(InstanceSettingObject instanceSettingObject)
-        {
-            var _serviceFactory = _helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
+            var _serviceFactory = helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
 
             try
             {
@@ -37,9 +31,9 @@ namespace ConsoleApp1
             }
         }
 
-        public int GetInstanceSettingValue(int instanceSettingId)
+        public int GetInstanceSettingValue(int instanceSettingId, ServicesMgr helper)
         {
-            var _serviceFactory = _helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
+            var _serviceFactory = helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
 
             try
             {
