@@ -271,7 +271,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProvider\DataProviderNet\DocumentNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\InstanceSettingNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\Interfaces\IDocumentNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\Interfaces\IInstanceSettingNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderRest\DocumentRestDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderRest\InstanceSettingRestDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderRest\Interfaces\IDocumentRestDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderRest\Interfaces\IInstanceSettingRestDataProvider.cs" />
+    <Compile Include="Domain\DomainNet\DBContext.cs" />
+    <Compile Include="Domain\DomainNet\DocumentNetService.cs" />
+    <Compile Include="Domain\DomainNet\InstanceSettingNetService.cs" />
+    <Compile Include="Domain\DomainNet\Interfaces\IDocumentNetService.cs" />
+    <Compile Include="Domain\DomainNet\Interfaces\IInstanceSettingNetService.cs" />
+    <Compile Include="Domain\DomainNet\Interfaces\IStartNetService.cs" />
+    <Compile Include="Domain\DomainNet\StartNetService.cs" />
+    <Compile Include="Domain\DomainRest\DocumentRestService.cs" />
+    <Compile Include="Domain\DomainRest\InstanceSettingRestService.cs" />
+    <Compile Include="Domain\DomainRest\Interfaces\IDocumentRestService.cs" />
+    <Compile Include="Domain\DomainRest\Interfaces\IInstanceSettingRestService.cs" />
     <Compile Include="Object\DocumentObject.cs" />
+    <Compile Include="Repositories\RepositoriesNet\DocumentNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\Inferfaces\IDocumentsNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\Inferfaces\IInstanceSettingsNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\InstanceSettingNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\DocumentRestRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\HttpClientRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\InstanceSettingRestRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\Interfaces\IDocumentsRestRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\Interfaces\IHttpClientRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\Interfaces\IInstanceSettingRestRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\Interfaces\IWordsRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\WordRepository.cs" />
     <Compile Include="RepositoryNet\DBContext.cs" />
     <Compile Include="RepositoryNet\DocumentsNetRepository.cs" />
     <Compile Include="RepositoryNet\Inferfaces\IDocumentsNetRepository.cs" />
