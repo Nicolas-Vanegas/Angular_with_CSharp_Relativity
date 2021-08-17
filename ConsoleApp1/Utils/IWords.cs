@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace ConsoleApp1.RepositoryRest.Interfaces
+namespace ConsoleApp1.Utils
 {
-    public interface IWordsRepository
+    public interface IWords
     {
         IList<string> filteredWords(List<string> documentTexts, int wordLength, bool net);
     }

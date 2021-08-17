@@ -97,3 +97,5 @@ C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.Crm.Sdk.
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.Xrm.Sdk.xml
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.CustomPages.xml
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.Services.Interfaces.xml
+C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\SimpleInjector.dll
+C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\SimpleInjector.xml

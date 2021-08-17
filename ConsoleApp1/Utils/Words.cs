@@ -1,4 +1,4 @@
-﻿using ConsoleApp1.RepositoryRest.Interfaces;
+﻿using ConsoleApp1.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace ConsoleApp1.RepositoryRest
 {
-    public class WordsRepository : IWordsRepository
+    public class Words : IWords
     {
         public IList<string> filteredWords(List<string> documentTexts, int wordLength, bool net)
         {
