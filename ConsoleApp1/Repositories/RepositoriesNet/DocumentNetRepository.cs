@@ -1,4 +1,6 @@
-﻿using ConsoleApp1.RepositoryNet.Inferfaces;
+﻿using ConsoleApp1.Common.Constants;
+using ConsoleApp1.Object;
+using ConsoleApp1.RepositoryNet.Inferfaces;
 using Relativity.ObjectManager.V1.Interfaces;
 using Relativity.ObjectManager.V1.Models;
 using System;
@@ -9,40 +11,40 @@ namespace ConsoleApp1.RepositoryNet
 {
     public class DocumentsNetRepository : IDocumentsNetRepository
     {
-        public List<string> Documents(int savedSearchId, ServicesMgr helper)
+        public List<DocumentWithExtractedTextObject> Documents(int savedSearchId, ServicesMgr helper)
         {
-            var _serviceFactory = helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
             try
             {
-
+                var extractedTextAndDocumentArtifactId = new List<DocumentWithExtractedTextObject>();
                 var documentTextExtractedList = new List<string>();
-                int workspaceId = 1017767;
 
                 var queryRequest = new QueryRequest
                 {
-                    Fields = new List<FieldRef>() { new FieldRef { Name = "Heretik Extracted Text" } },
+                    Fields = new List<FieldRef>() {
+                        new FieldRef { Name = "Extracted Text" }
+                    },
                     ObjectType = new ObjectTypeRef
                     {
                         ArtifactTypeID = 10
                     },
                     Condition = $"'Artifact ID' IN SAVEDSEARCH {savedSearchId}"
                 };
-                using (IObjectManager objectManager = _serviceFactory.CreateProxy<IObjectManager>())
+                using (var objectManager = helper.CreateProxy<IObjectManager>())
                 {
-                    var result = objectManager.QuerySlimAsync(workspaceId, queryRequest, 0, 0).ConfigureAwait(false).GetAwaiter().GetResult();
-                    var extractedTexts = result.Objects.Select(x => x).ToList().Select(x => x.Values).ToList().Select(x => x).ToList();
-                    foreach (var extractedText in extractedTexts)
+                    var result = objectManager.QuerySlimAsync(Constants.WORKSPACE_ID, queryRequest, 0, 0).ConfigureAwait(false).GetAwaiter().GetResult();
+                    var documents = result.Objects;
+                    foreach (var document in documents)
                     {
-                        documentTextExtractedList.Add(extractedText[0].ToString());
+                        var sisas = new DocumentWithExtractedTextObject() { ArtifactID = document.ArtifactID, ExtractedText = document.Values.FirstOrDefault().ToString() };
+                        extractedTextAndDocumentArtifactId.Add(sisas);
                     }
                 }
-                return documentTextExtractedList;
+                return extractedTextAndDocumentArtifactId;
             }
             catch (Exception ex)
             {
                 throw new Exception($"Failed to read documents: {ex}");
             }
-
         }
     }
 }

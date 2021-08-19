@@ -10,9 +10,13 @@ namespace ConsoleApp1.Domain.DomainNet
         {
             _instanceSettingNetDataprovider = instanceSettingsNetDataprovider;
         }
-        public int CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr _helper)
+        public void CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr _helper)
         {
-            return _instanceSettingNetDataprovider.CreateInstanceSetting(instanceSettingObject, _helper);
+            var created = true;
+            if (!created)
+            {
+                _instanceSettingNetDataprovider.CreateInstanceSetting(instanceSettingObject, _helper);
+            }
         }
 
         public int GetInstanceSettingValue(int instanceSettingId, ServicesMgr helper)

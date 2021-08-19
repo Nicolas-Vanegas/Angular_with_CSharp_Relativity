@@ -141,9 +141,6 @@
     <Reference Include="Relativity.DataTransfer.Nodes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Relativity.Transfer.Client.7.2.7\lib\net462\Relativity.DataTransfer.Nodes.dll</HintPath>
     </Reference>
-    <Reference Include="Relativity.Environment, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Relativity.Environment.SDK.2.0.2\lib\net462\Relativity.Environment.dll</HintPath>
-    </Reference>
     <Reference Include="Relativity.Kepler, Version=2.9.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Relativity.ObjectManager.12.1.171.20\lib\net462\Relativity.Kepler.dll</HintPath>
     </Reference>
@@ -170,6 +167,9 @@
     </Reference>
     <Reference Include="Relativity.ObjectManager, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Relativity.ObjectManager.SDK.1.1.0\lib\net462\Relativity.ObjectManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Relativity.ObjectModel, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Relativity.ObjectModel.SDK.1.4.1\lib\net462\Relativity.ObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Relativity.Services.DataContracts, Version=13.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Relativity.Services.DataContracts.SDK.13.5.0\lib\net462\Relativity.Services.DataContracts.dll</HintPath>
@@ -274,36 +274,79 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Constants\Constants.cs" />
+    <Compile Include="Connections\StringsConnection.cs" />
+    <Compile Include="Connections\WebClientConnection.cs" />
     <Compile Include="DataProvider\DataProviderNet\DocumentNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\FieldNetDataProvider.cs" />
     <Compile Include="DataProvider\DataProviderNet\InstanceSettingNetDataProvider.cs" />
     <Compile Include="DataProvider\DataProviderNet\Interfaces\IDocumentNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\Interfaces\IFieldNetDataProvider.cs" />
     <Compile Include="DataProvider\DataProviderNet\Interfaces\IInstanceSettingNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\Interfaces\IObjectTypeNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\Interfaces\IWordFoundNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\ObjectTypeNetDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderNet\WordFoundNetDataProvider.cs" />
     <Compile Include="DataProvider\DataProviderRest\DocumentRestDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderRest\FieldRestDataProvider.cs" />
     <Compile Include="DataProvider\DataProviderRest\InstanceSettingRestDataProvider.cs" />
     <Compile Include="DataProvider\DataProviderRest\Interfaces\IDocumentRestDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderRest\Interfaces\IFieldRestDataProvider.cs" />
     <Compile Include="DataProvider\DataProviderRest\Interfaces\IInstanceSettingRestDataProvider.cs" />
-    <Compile Include="Domain\DomainNet\DBContext.cs" />
+    <Compile Include="Connections\DBContext.cs" />
+    <Compile Include="DataProvider\DataProviderRest\Interfaces\IObjectTypeRestDataProvider.cs" />
+    <Compile Include="DataProvider\DataProviderRest\ObjectTypeRestDataProvider.cs" />
     <Compile Include="Domain\DomainNet\DocumentNetService.cs" />
+    <Compile Include="Domain\DomainNet\FieldNetService.cs" />
     <Compile Include="Domain\DomainNet\InstanceSettingNetService.cs" />
+    <Compile Include="Domain\DomainNet\Interfaces\IWordFoundNetService.cs" />
     <Compile Include="Domain\DomainNet\Interfaces\IDocumentNetService.cs" />
+    <Compile Include="Domain\DomainNet\Interfaces\IFieldNetService.cs" />
     <Compile Include="Domain\DomainNet\Interfaces\IInstanceSettingNetService.cs" />
+    <Compile Include="Domain\DomainNet\Interfaces\IObjectTypeNetService.cs" />
     <Compile Include="Domain\DomainNet\Interfaces\IStartNetService.cs" />
+    <Compile Include="Domain\DomainNet\ObjectTypeNetService.cs" />
     <Compile Include="Domain\DomainNet\StartNetService.cs" />
+    <Compile Include="Domain\DomainNet\WordFoundNetService.cs" />
     <Compile Include="Domain\DomainRest\DocumentRestService.cs" />
+    <Compile Include="Domain\DomainRest\FieldRestService.cs" />
     <Compile Include="Domain\DomainRest\InstanceSettingRestService.cs" />
     <Compile Include="Domain\DomainRest\Interfaces\IDocumentRestService.cs" />
+    <Compile Include="Domain\DomainRest\Interfaces\IFieldRestService.cs" />
     <Compile Include="Domain\DomainRest\Interfaces\IInstanceSettingRestService.cs" />
-    <Compile Include="Object\DocumentObject.cs" />
+    <Compile Include="Domain\DomainRest\Interfaces\IObjectTypeRestService.cs" />
+    <Compile Include="Domain\DomainRest\Interfaces\IStartRestService.cs" />
+    <Compile Include="Domain\DomainRest\ObjectTypeRestService.cs" />
+    <Compile Include="Domain\DomainRest\StartRestService.cs" />
+    <Compile Include="Object\ConnectionConfig.cs" />
+    <Compile Include="Object\Definitions.cs" />
+    <Compile Include="Object\DictionaryAndDocId.cs" />
+    <Compile Include="Object\DictionaryObject.cs" />
+    <Compile Include="Object\DocumentWithExtractedTextObject.cs" />
+    <Compile Include="Object\MeaningObject.cs" />
+    <Compile Include="Object\other.cs" />
+    <Compile Include="Object\PhoneticObject.cs" />
+    <Compile Include="Object\WordToFindObject.cs" />
+    <Compile Include="Object\WordWithDocumentArtifactIdObject.cs" />
     <Compile Include="Repositories\RepositoriesNet\DocumentNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\FieldNetRepository.cs" />
     <Compile Include="Repositories\RepositoriesNet\Inferfaces\IDocumentsNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\Inferfaces\IFieldNetRepository.cs" />
     <Compile Include="Repositories\RepositoriesNet\Inferfaces\IInstanceSettingsNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\Inferfaces\IObjectTypeNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\Inferfaces\IWordFoundNetRepository.cs" />
     <Compile Include="Repositories\RepositoriesNet\InstanceSettingNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\ObjectTypeNetRepository.cs" />
+    <Compile Include="Repositories\RepositoriesNet\WordFoundNetRepository.cs" />
     <Compile Include="Repositories\RepositoriesRest\DocumentRestRepository.cs" />
-    <Compile Include="Repositories\RepositoriesRest\HttpClientRepository.cs" />
+    <Compile Include="Connections\HttpClientConnection.cs" />
+    <Compile Include="Repositories\RepositoriesRest\FieldRestRepository.cs" />
     <Compile Include="Repositories\RepositoriesRest\InstanceSettingRestRepository.cs" />
     <Compile Include="Repositories\RepositoriesRest\Interfaces\IDocumentsRestRepository.cs" />
-    <Compile Include="Repositories\RepositoriesRest\Interfaces\IHttpClientRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\Interfaces\IFieldRestRepository.cs" />
     <Compile Include="Repositories\RepositoriesRest\Interfaces\IInstanceSettingRestRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\Interfaces\IObjectTypeRestRepository.cs" />
+    <Compile Include="Repositories\RepositoriesRest\ObjectTypeRestRepository.cs" />
     <Compile Include="Utils\IWords.cs" />
     <Compile Include="Utils\Words.cs" />
     <Compile Include="Object\InstanceSettingObject.cs" />
@@ -316,6 +359,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="oi\unmanaged\oilink.exe" />
     <Content Include="oi\unmanaged\oilink.jar" />
     <Content Include="oi\unmanaged\sccca-R1.dll" />
@@ -332,6 +376,7 @@
     <Content Include="oi\unmanaged\sccut-R1.dll" />
     <Content Include="oi\unmanaged\wvcore-R1.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Relativity.OutsideIn.2020.6.0\build\Relativity.OutsideIn.targets" Condition="Exists('..\packages\Relativity.OutsideIn.2020.6.0\build\Relativity.OutsideIn.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

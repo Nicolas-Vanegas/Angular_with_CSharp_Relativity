@@ -1,6 +1,6 @@
-﻿using ConsoleApp1.Object;
+﻿using ConsoleApp1.Common.Constants;
+using ConsoleApp1.Object;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Relativity.ObjectManager.V1.Models;
 using System;
 using System.Collections.Generic;
@@ -13,15 +13,15 @@ namespace ConsoleApp1.RepositoryRest
 {
     public class DocumentsRestRepository : IDocumentsRestRepository
     {
-        private readonly HttpClientRepository _httpClientRepository;
+        private readonly HttpClientConnection _httpClientRepository;
 
-        public DocumentsRestRepository(HttpClientRepository httpClientRepository)
+        public DocumentsRestRepository(HttpClientConnection httpClientRepository)
         {
             _httpClientRepository = httpClientRepository;
         }
         public List<int> Documents(int savedSearchId)
         {
-            string url = "Relativity.Rest/API/Relativity.Objects/workspace/1017767/object/queryslim";
+            string url = $"Relativity.Rest/API/Relativity.Objects/workspace/{Constants.WORKSPACE_ID}/object/queryslim";
             string payload = $@" {{
                 ""length"": 0,
                 ""request"": {{
@@ -51,9 +51,10 @@ namespace ConsoleApp1.RepositoryRest
             }
             return documentIds;
         }
-        public List<string> DocumentTexts(List<int> documentIds)
+        public List<DocumentWithExtractedTextObject> DocumentTexts(List<int> documentIds)
         {
-            string url = "Relativity.Rest/API/Relativity.Objects/workspace/1017767/object/queryslim";
+            string url = $"Relativity.Rest/API/Relativity.Objects/workspace/{Constants.WORKSPACE_ID}/object/queryslim";
+            var extractedTextAndDocumentArtifactId = new List<DocumentWithExtractedTextObject>();
             var documentTextExtractedList = new List<string>();
             foreach (var documentId in documentIds)
             {
@@ -76,23 +77,22 @@ namespace ConsoleApp1.RepositoryRest
 
                 HttpResponseMessage response = httpClient.PostAsync(url, content).ConfigureAwait(false).GetAwaiter().GetResult();
                 var documents = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-                var document = JsonConvert.DeserializeObject<DocumentObject>(documents);
+                var document = JsonConvert.DeserializeObject<QueryResultSlim>(documents);
 
-
-                JObject documentss = JObject.Parse(documents);
-
-                foreach (var item in documentss["Objects"])
+                foreach (var item in document.Objects)
                 {
-                    var maincra = item["Values"];
-                    var yerda = maincra.ToString();
-                    documentTextExtractedList.Add(yerda);
+                    extractedTextAndDocumentArtifactId.Add(new DocumentWithExtractedTextObject()
+                    {
+                        ExtractedText = item.Values.FirstOrDefault().ToString(),
+                        ArtifactID = item.ArtifactID
+                    });
                 }
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     throw new Exception($"Failed to read documents: {documents}");
                 }
             }
-            return documentTextExtractedList;
+            return extractedTextAndDocumentArtifactId;
         }
     }
 }

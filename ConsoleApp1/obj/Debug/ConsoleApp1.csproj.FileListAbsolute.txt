@@ -9,7 +9,6 @@ C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.API.dll
-C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.Environment.dll
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.Kepler.dll
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.ObjectManager.dll
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.Shared.dll
@@ -99,3 +98,4 @@ C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.CustomP
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.Services.Interfaces.xml
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\SimpleInjector.dll
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\SimpleInjector.xml
+C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.ObjectModel.dll

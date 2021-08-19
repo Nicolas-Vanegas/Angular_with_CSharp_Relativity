@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.DataProvider.Interfaces;
+using ConsoleApp1.Object;
 using ConsoleApp1.RepositoryNet.Inferfaces;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace ConsoleApp1.DataProvider
         {
             _documentNetRepository = documentsNetRepository;
         }
-        public List<string> GetDocumentsBySavedSearchId(int savedSearchId, ServicesMgr helper)
+        public List<DocumentWithExtractedTextObject> GetDocumentsBySavedSearchId(int savedSearchId, ServicesMgr helper)
         {
             return _documentNetRepository.Documents(savedSearchId, helper);
         }

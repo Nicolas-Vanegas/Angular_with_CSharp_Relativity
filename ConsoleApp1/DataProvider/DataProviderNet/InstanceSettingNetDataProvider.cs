@@ -10,9 +10,9 @@ namespace ConsoleApp1.DataProvider
         {
             _instanceSettingNetRepository = instanceSettingNetRepository;
         }
-        public int CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper)
+        public void CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper)
         {
-            return _instanceSettingNetRepository.CreateInstanceSetting(instanceSettingObject, helper);
+            _instanceSettingNetRepository.CreateInstanceSetting(instanceSettingObject, helper);
         }
 
         public int GetInstanceSettingValue(int instanceSettingId, ServicesMgr helper)

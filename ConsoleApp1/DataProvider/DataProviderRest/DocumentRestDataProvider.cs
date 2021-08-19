@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.DataProvider.DataProviderRest.Interfaces;
+using ConsoleApp1.Object;
 using ConsoleApp1.RepositoryRest;
 using System.Collections.Generic;
 
@@ -16,7 +17,7 @@ namespace ConsoleApp1.DataProvider.DataProviderRest
             return _documentsRestRepository.Documents(savedSearchId);
         }
 
-        public List<string> DocumentTexts(List<int> documentIds)
+        public List<DocumentWithExtractedTextObject> DocumentTexts(List<int> documentIds)
         {
             return _documentsRestRepository.DocumentTexts(documentIds);
         }

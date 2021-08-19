@@ -10,8 +10,8 @@ namespace ConsoleApp1
 {
     public class InstanceSettingRestRepository : IInstanceSettingRestRepository
     {
-        private readonly HttpClientRepository _httpClientRepository;
-        public InstanceSettingRestRepository(HttpClientRepository httpClientRepository)
+        private readonly HttpClientConnection _httpClientRepository;
+        public InstanceSettingRestRepository(HttpClientConnection httpClientRepository)
         {
             _httpClientRepository = httpClientRepository;
         }

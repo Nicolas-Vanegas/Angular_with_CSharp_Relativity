@@ -1,13 +1,11 @@
-﻿using System;
+﻿using ConsoleApp1.Object;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.DomainRest.Interfaces
 {
     public interface IDocumentRestService
     {
-        
+        List<int> Documents(int savedSearchId);
+        List<DocumentWithExtractedTextObject> DocumentTexts(List<int> documentIds);
     }
 }

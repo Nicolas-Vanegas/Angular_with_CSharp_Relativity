@@ -2,7 +2,7 @@
 {
     public interface IInstanceSettingNetService
     {
-        int CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper);
+        void CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper);
         int GetInstanceSettingValue(int instanceSettingId, ServicesMgr helper);
     }
 }

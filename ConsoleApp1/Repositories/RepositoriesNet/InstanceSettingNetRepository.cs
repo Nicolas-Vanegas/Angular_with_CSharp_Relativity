@@ -5,14 +5,12 @@ namespace ConsoleApp1
 {
     public class InstanceSettingNetRepository : IInstanceSettingsNetRepository
     {
-        public int CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper)
+        public void CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper)
         {
-            var _serviceFactory = helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
-
             try
             {
 
-                using (IInstanceSettingManager instanceSettingManager = _serviceFactory.CreateProxy<IInstanceSettingManager>())
+                using (var instanceSettingManager = helper.CreateProxy<IInstanceSettingManager>())
                 {
                     Relativity.Services.Interfaces.InstanceSetting.Model.InstanceSettingRequest request = new Relativity.Services.Interfaces.InstanceSetting.Model.InstanceSettingRequest();
                     request.ValueType = Relativity.Services.Interfaces.InstanceSetting.Model.InstanceSettingValueTypeEnum.Integer32;
@@ -22,7 +20,6 @@ namespace ConsoleApp1
                     request.Section = instanceSettingObject.Section;
                     request.InitialValue = instanceSettingObject.InitialValue.ToString();
                     int artifactID = instanceSettingManager.CreateAsync(-1, request).ConfigureAwait(false).GetAwaiter().GetResult();
-                    return artifactID;
                 }
             }
             catch (Exception ex)
@@ -33,11 +30,9 @@ namespace ConsoleApp1
 
         public int GetInstanceSettingValue(int instanceSettingId, ServicesMgr helper)
         {
-            var _serviceFactory = helper.getNewServiceFactory("192.168.20.31", "relativity.admin@relativity.com", "Test1234!");
-
             try
             {
-                using (IInstanceSettingManager instanceSettingManager = _serviceFactory.CreateProxy<IInstanceSettingManager>())
+                using (IInstanceSettingManager instanceSettingManager = helper.CreateProxy<IInstanceSettingManager>())
                 {
                     Relativity.Services.Interfaces.InstanceSetting.Model.InstanceSettingResponse response = instanceSettingManager.ReadAsync(-1, instanceSettingId).ConfigureAwait(false).GetAwaiter().GetResult();
                     int value = Int32.Parse(response.Value);
