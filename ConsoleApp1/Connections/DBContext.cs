@@ -12,7 +12,7 @@ public sealed class ServicesMgr
     private ServicesMgr(ConnectionConfig config)
     {
         _connectionConfig = config;
-        var factorySettings = new ServiceFactorySettings(new Uri(config.RestUrl), new UsernamePasswordCredentials(config.Creds.Username, config.Creds.Password));
+        var factorySettings = new ServiceFactorySettings(new Uri(_connectionConfig.RestUrl), new UsernamePasswordCredentials(_connectionConfig.Creds.Username, _connectionConfig.Creds.Password));
         _serviceFactory = new ServiceFactory(factorySettings);
     }
     public static ServicesMgr GetInstance(ConnectionConfig config)

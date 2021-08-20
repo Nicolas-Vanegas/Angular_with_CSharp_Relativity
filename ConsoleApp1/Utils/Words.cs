@@ -15,22 +15,17 @@ namespace ConsoleApp1.RepositoryRest
         {
             var filteredWords = new List<WordWithDocumentArtifactIdObject>();
 
-            Regex regexToRemoveSpecialCharacters = new Regex(@"^[!#$%&'()*+,-./:;?@[\]^_]*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-
             var replacedText = documentWithExtractedText.Select(x => Regex.Replace(x.ExtractedText, @"\r\n?|\n|\\n", " ")).ToList();
 
             foreach (var document in documentWithExtractedText)
             {
-                var trim = document.ExtractedText.Substring(0 + 6);
-
-                var withoutLineBreak = Regex.Replace(trim, @"\r\n?|\n|\\n", " ");
+                var withoutLineBreak = Regex.Replace(document.ExtractedText, @"\r\n?|\n|\\n", " ");
                 string[] words = withoutLineBreak.Split(' ');
                 var wordsList = words.ToList();
                 wordsList.RemoveAll(word => word == "");
-                wordsList.RemoveRange(wordsList.Count - 2, 2);
+                //wordsList.RemoveRange(wordsList.Count - 2, 2);
                 foreach (var word in wordsList)
                 {
-                    var wordWithoutSpecialCharacters = regexToRemoveSpecialCharacters.Replace(word, String.Empty);
                     var theWord = Regex.Replace(word, @"[^a-zA-Z]+", "");
                     if (theWord.Length == wordLength)
                     {
