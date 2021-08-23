@@ -32,8 +32,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\codif\\Downloads\\NSerioTemplate": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/NSerioDevs/_packaging/9ff7cafe-da05-7469-814c-4a043cd58101/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
