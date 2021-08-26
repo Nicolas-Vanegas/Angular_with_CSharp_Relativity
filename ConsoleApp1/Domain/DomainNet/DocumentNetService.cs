@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1.DataProvider.Interfaces;
 using ConsoleApp1.Object;
+using Relativity.Services.Objects;
 using System.Collections.Generic;
 
 namespace ConsoleApp1.Domain.DomainNet.Interfaces
@@ -11,7 +12,7 @@ namespace ConsoleApp1.Domain.DomainNet.Interfaces
         {
             _documentNetDataProvider = documentNetDataProvider;
         }
-        public List<DocumentWithExtractedTextObject> GetDocumentsBySavedSearchId(int savedSearchId, ServicesMgr helper)
+        public List<DocumentWithExtractedTextObject> GetDocumentsBySavedSearchId(int savedSearchId, IObjectManager helper)
         {
             return _documentNetDataProvider.GetDocumentsBySavedSearchId(savedSearchId, helper);
         }

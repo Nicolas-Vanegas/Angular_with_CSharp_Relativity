@@ -4,6 +4,10 @@ using ConsoleApp1.Domain.DomainNet.Interfaces;
 using ConsoleApp1.Domain.DomainRest.Interfaces;
 using ConsoleApp1.RepositoryRest;
 using ConsoleApp1.Utils;
+using Relativity.Services.Interfaces.Field;
+using Relativity.Services.Interfaces.InstanceSetting;
+using Relativity.Services.Interfaces.ObjectType;
+using Relativity.Services.Objects;
 using System.Collections.Generic;
 
 namespace ConsoleApp1.Domain.DomainNet
@@ -52,26 +56,31 @@ namespace ConsoleApp1.Domain.DomainNet
         {
             //connections
             var stringsConnection = new StringsConnection();
-            var connection = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection());
+            var connectionObjectManager = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection()).CreateProxy<IObjectManager>();
+            var connectionInstanceSettingsManager = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection()).CreateProxy<IInstanceSettingManager>();
+            var connectionObjectTypeManager = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection()).CreateProxy<IObjectTypeManager>();
+            var connectionFieldManager = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection()).CreateProxy<IFieldManager>();
+
+
             var restConnection = new HttpClientConnection();
 
             //Create Instance Setting
-            _instanceSettingNetService.CreateInstanceSetting(_instanceSettingsObject, connection);
+            _instanceSettingNetService.CreateInstanceSetting(_instanceSettingsObject, connectionInstanceSettingsManager);
 
-            var documentTextsNet = _documentNetService.GetDocumentsBySavedSearchId(_savedSearchId, connection);
-            var wordLengthNet = _instanceSettingNetService.GetInstanceSettingValue(Constants.INSTANCE_SETTING_ID, connection);
+            var documentTextsNet = _documentNetService.GetDocumentsBySavedSearchId(_savedSearchId, connectionObjectManager);
+            var wordLengthNet = _instanceSettingNetService.GetInstanceSettingValue(Constants.INSTANCE_SETTING_ID, connectionInstanceSettingsManager);
 
             //Filter the words
             var filteredWordsNet = _words.filteredWords(documentTextsNet, wordLengthNet);
             var duplicateWordFilter = _words.duplicateWordFilter(filteredWordsNet);
 
             //Create ObjectType and theirs fields
-            _objectTypeNetService.CreateObjectType(connection);
-            _fieldNetService.CreateLongTextField(connection, _longTextFieldName);
+            _objectTypeNetService.CreateObjectType(connectionObjectTypeManager);
+            _fieldNetService.CreateLongTextField(connectionFieldManager, _longTextFieldName);
             _fieldRestService.CreateMultiObjectField(restConnection, _multiObjectFieldName);
 
             //Create Word Found objects
-            _wordFoundNetService.CreateWordFoundObject(connection, duplicateWordFilter, wordLengthNet);
+            _wordFoundNetService.CreateWordFoundObject(connectionObjectManager, duplicateWordFilter, wordLengthNet);
         }
     }
 }

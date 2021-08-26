@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1.DataProvider.DataProviderNet.Interfaces;
 using ConsoleApp1.Domain.DomainNet.Interfaces;
+using Relativity.Services.Interfaces.Field;
 using System.Collections.Generic;
 
 namespace ConsoleApp1.Domain.DomainNet
@@ -11,7 +12,7 @@ namespace ConsoleApp1.Domain.DomainNet
         {
             _fieldNetDataProvider = fieldNetDataProvider;
         }
-        public void CreateLongTextField(ServicesMgr helper, List<string> fieldNames)
+        public void CreateLongTextField(IFieldManager helper, List<string> fieldNames)
         {
             var created = true;
             if (!created)

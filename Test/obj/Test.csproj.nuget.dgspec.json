@@ -14,6 +14,25 @@
         "net472": {}
       }
     },
+    "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\RelCustomPage\\RelCustomPage.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\RelCustomPage\\RelCustomPage.csproj",
+        "projectName": "RelCustomPage",
+        "projectPath": "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\RelCustomPage\\RelCustomPage.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+                "projectPath": "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -41,6 +60,9 @@
             "projectReferences": {
               "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
                 "projectPath": "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj"
+              },
+              "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\RelCustomPage\\RelCustomPage.csproj": {
+                "projectPath": "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\RelCustomPage\\RelCustomPage.csproj"
               }
             }
           }

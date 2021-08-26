@@ -8,7 +8,7 @@ namespace ConsoleApp1.Repositories.RepositoriesNet
 {
     public class ObjectTypeNetRepository : IObjectTypeNetRepository
     {
-        public void CreateObjectType(ServicesMgr helper)
+        public void CreateObjectType(IObjectTypeManager helper)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace ConsoleApp1.Repositories.RepositoriesNet
                         ArtifactTypeID = Constants.WORKSPACE_ARTIFACT_TYPE_ID
                     },
                 };
-                using (var objectTypeManager = helper.CreateProxy<IObjectTypeManager>())
+                using (var objectTypeManager = helper)
                 {
                     var newObjectType = objectTypeManager.CreateAsync(Constants.WORKSPACE_ID, request).ConfigureAwait(false).GetAwaiter().GetResult();
                 }

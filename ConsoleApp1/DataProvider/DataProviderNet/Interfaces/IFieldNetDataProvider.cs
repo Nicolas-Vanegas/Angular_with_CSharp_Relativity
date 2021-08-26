@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Relativity.Services.Interfaces.Field;
+using System.Collections.Generic;
 
 namespace ConsoleApp1.DataProvider.DataProviderNet.Interfaces
 {
     public interface IFieldNetDataProvider
     {
-        void CreateLongTextField(ServicesMgr helper, List<string> fieldNames);
+        void CreateLongTextField(IFieldManager helper, List<string> fieldNames);
     }
 }

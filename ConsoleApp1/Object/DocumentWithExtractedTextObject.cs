@@ -3,6 +3,7 @@
     public class DocumentWithExtractedTextObject
     {
         public int ArtifactID { get; set; }
+        public string ControlNumber { get; set; }
         public string ExtractedText { get; set; }
     }
 }

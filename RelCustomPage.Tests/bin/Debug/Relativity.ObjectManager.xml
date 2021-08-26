@@ -1,0 +1,2844 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Relativity.ObjectManager</name>
+    </assembly>
+    <members>
+        <member name="T:Relativity.ObjectManager.IObjectModule">
+            <summary>
+            Object Manager Interface
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Exceptions.EventHandlerFailedException">
+            <summary>
+            The exception thrown when an event handler fails during an update operation performed through the Object Manager service.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Exceptions.EventHandlerFailedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the EventHandlerFailedException class with a string.
+            </summary>
+            <param name="message">The message captured in the exception.</param>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Exceptions.EventHandlerFailedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the EventHandlerFailedException class with a string and inner exception.
+            </summary>
+            <param name="message">The message captured in the exception.</param>
+            <param name="innerException">The inner exception captured.</param>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Exceptions.EventHandlerFailedException.#ctor(System.String,System.Exception,System.String,Relativity.ObjectManager.V1.Models.EventHandlerExecutionType,System.String,System.Nullable{System.Guid})">
+            <summary>
+            Initializes a new instance of the EventHandlerFailedException class with a string and inner exception.
+            </summary>
+            <param name="message">The message captured in the exception.</param>
+            <param name="innerException">The inner exception captured.</param>
+            <param name="className">The name of the class that defines the failed event handler.</param>
+            <param name="eventHandlerType">The execution type of the failed event handler.</param>
+            <param name="applicationName">The application name which the assembly containing the failed event handler is associated with.</param>
+            <param name="applicationGuid">The application GUID which the assembly containing the failed event handler is associated with.</param>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Exceptions.EventHandlerFailedException.ClassName">
+            <summary>
+            Gets or Sets the name of the class that defines the failed event handler.
+            </summary>
+            <remarks>Is null when consumer does not have permission to view the associated application.</remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Exceptions.EventHandlerFailedException.EventHandlerType">
+            <summary>
+            Gets or Sets the execution type of the failed event handler.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Exceptions.EventHandlerFailedException.ApplicationName">
+            <summary>
+            Gets or Sets the application name which the assembly containing the
+            failed event handler is associated with.
+            </summary>
+            <remarks>Is null when consumer does not have permission to view the associated application.</remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Exceptions.EventHandlerFailedException.ApplicationGuid">
+            <summary>
+            Gets or Sets the application GUID which the assembly containing the
+            failed event handler is associated with.
+            </summary>
+            <remarks>Is null when consumer does not have permission to view the associated application.</remarks>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Extensions.ChoiceExtensions">
+            <summary>
+            Provides a method for converting a fully hydrated <see cref="T:Relativity.ObjectManager.V1.Models.Choice"/> object into a <see cref="T:Relativity.ObjectManager.V1.Models.ChoiceRef"/> object. 
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.ChoiceExtensions.ToRef(Relativity.ObjectManager.V1.Models.Choice)">
+            <summary>
+            Converts a fully hydrated <see cref="T:Relativity.ObjectManager.V1.Models.Choice"/> object into a <see cref="T:Relativity.ObjectManager.V1.Models.ChoiceRef"/> object. 
+            </summary>
+            <param name="choice">The <see cref="T:Relativity.ObjectManager.V1.Models.Choice"/> object to convert.</param>
+            <returns>The converted <see cref="T:Relativity.ObjectManager.V1.Models.ChoiceRef"/>.</returns>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Extensions.ExpandoObjectExtensions">
+            <summary>
+            Provides methods for retrieving a representation of an <see cref="T:System.Dynamic.ExpandoObject"/> or its properties based on a corresponding key.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.ExpandoObjectExtensions.FixCaseForKey(System.Dynamic.ExpandoObject,System.String)">
+            <summary>
+            Finds the case-sensitive representation of a key that a <see cref="T:System.Dynamic.ExpandoObject"/> is using.
+            </summary>
+            <param name="expando">The <see cref="T:System.Dynamic.ExpandoObject"/> to search.</param>
+            <param name="key">The case-insensitive key to search for.</param>
+            <returns>Returns the case-sensitive representation of an <see cref="T:System.Dynamic.ExpandoObject"/> corresponding to the key passed to this method.
+            Returns null if the key is not found.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.ExpandoObjectExtensions.GetPropertyWithKey``1(System.Dynamic.ExpandoObject,System.String,``0)">
+            <summary>
+            Returns the <see cref="T:System.Dynamic.ExpandoObject"/> property corresponding to the key passed in.
+            </summary>
+            <param name="expando">The <see cref="T:System.Dynamic.ExpandoObject"/> to search.</param>
+            <param name="key">The case-insensitive key to search for.</param>
+            <param name="defaultValue">A value to return if the key is not found.</param>
+            <typeparam name="T">The type of the property.</typeparam>
+            <returns>Returns a property of an <see cref="T:System.Dynamic.ExpandoObject"/> that corresponds to the case-insensitive key passed to this method.
+            Returns <paramref name="defaultValue"/> if the key is not found.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.ExpandoObjectExtensions.ToFileObject(System.Dynamic.ExpandoObject)">
+             <summary>
+             Converts an <see cref="T:System.Dynamic.ExpandoObject"/> that represents a file (such as that returned by query/queryslim for file fields) into a <see cref="T:Relativity.ObjectManager.V1.Models.FileObject"/> model.
+             </summary>
+             <param name="expando">An <see cref="T:System.Dynamic.ExpandoObject"/> with FileId, FileFieldArtifactId, and FileName properties.</param>
+             <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.FileObject"/> populated with the data from <paramref name="expando"/></returns>
+            <exception cref="T:Relativity.Services.Exceptions.ServiceSerializationException">Thrown when <paramref name="expando"/> does not contain the properties <see cref="T:Relativity.ObjectManager.V1.Models.FileObject"/> contains.</exception>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Extensions.FieldExtensions">
+            <summary>
+            Provides a method for converting a fully hydrated <see cref="T:Relativity.ObjectManager.V1.Models.Field"/> object into a <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/> object. 
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.FieldExtensions.ToRef(Relativity.ObjectManager.V1.Models.Field)">
+            <summary>
+            Converts a fully hydrated <see cref="T:Relativity.ObjectManager.V1.Models.Field"/> object into a <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/> object. 
+            </summary>
+            <param name="field">The <see cref="T:Relativity.ObjectManager.V1.Models.Field"/> to convert.</param>
+            <returns>A converted  <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/>.</returns>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Extensions.GuidListExtensions">
+            <summary>
+            Provides a method for retrieving the GUID from a collection of GUIDs.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.GuidListExtensions.GetOptionalGuid(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Retrieves a GUID from a collection of GUIDs.
+            </summary>
+            <param name="guids">A collection of GUIDs.</param>
+            <returns>The first GUID found in <paramref name="guids"/> or null if there are none.</returns>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Extensions.IObjectTypeExtensions">
+            <summary>
+            Provides methods for working with GUIDs on <see cref="T:Relativity.ObjectManager.V1.Models.IObjectType"/> objects.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.IObjectTypeExtensions.IsIdentifiedByGuid(Relativity.ObjectManager.V1.Models.IObjectType)">
+            <summary>
+            Checks whether a <see cref="T:Relativity.ObjectManager.V1.Models.IObjectType"/> object contains any identifying GUIDs.
+            </summary>
+            <param name="objectType">The object type to check.</param>
+            <returns>True if the object contains any identifying GUIDs; otherwise false.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.IObjectTypeExtensions.GetGuid(Relativity.ObjectManager.V1.Models.IObjectType)">
+            <summary>
+            Obtains an identifying GUID from an <see cref="T:Relativity.ObjectManager.V1.Models.IObjectType"/> object.
+            </summary>
+            <param name="objectType">The object type to check.</param>
+            <returns>The first or only identifying GUID found.
+            If there are no Identifying GUIDs, it returns <see cref="F:System.Guid.Empty"/>.</returns>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Extensions.LayoutExtensions">
+            <summary>
+            Provides a method for converting a fully hydrated <see cref="T:Relativity.ObjectManager.V1.Models.Layout"/> object into a <see cref="T:Relativity.ObjectManager.V1.Models.LayoutRef"/> object. 
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.LayoutExtensions.ToRef(Relativity.ObjectManager.V1.Models.Layout)">
+            <summary>
+            Converts a fully hydrated <see cref="T:Relativity.ObjectManager.V1.Models.Layout"/> object into a <see cref="T:Relativity.ObjectManager.V1.Models.LayoutRef"/> object. 
+            </summary>
+            <param name="layout">The <see cref="T:Relativity.ObjectManager.V1.Models.Layout"/> to convert.</param>
+            <returns>A Converted <see cref="T:Relativity.ObjectManager.V1.Models.LayoutRef"/>.</returns>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Extensions.RelativityObjectExtensions">
+            <summary>
+            Provides a method for converting a fully hydrated <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/> into a <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> object. 
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Extensions.RelativityObjectExtensions.ToRef(Relativity.ObjectManager.V1.Models.RelativityObject)">
+            <summary>
+            Converts a fully hydrated <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/> into a <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> object.
+            </summary>
+            <param name="relativityObject">The <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/> to convert.</param>
+            <returns>A converted <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/>.</returns>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Interfaces.IObjectManager">
+            <summary>
+            IObjectManager interface exposes methods on the Relativity Object Manager web service used for querying as well as reading and updating fields on Documents and Relativity Dynamic Objects (RDOs).
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.QueryAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Int32,System.Int32)">
+            <summary>
+            Searches for Workspaces, Documents, RDOs, and system types.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to query for. Pass -1 for admin artifacts.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> object containing conditions, sorting order, fields, and other information for the query.</param>
+            <param name="start">Index of the first artifact in the returned <see cref="T:Relativity.ObjectManager.V1.Models.QueryResult"/> object.</param>
+            <param name="length">Number of items to return in the query result, starting with index in the start parameter.</param>
+            <returns>Returns the results of the executed query.</returns>
+            <remarks>The QueryAsync() methods support querying for the following system types: Application, Batch, Batch Sets, Choice, Client, Group, 
+            Markup Set, User, Object Type, Tab, Folder, Layout, View, Workspace, Error, Field, Relativity Script, and Saved Search.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.QueryAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Int32,System.Int32,System.IProgress{Relativity.ObjectManager.V1.Models.ProgressReport})">
+            <summary>
+            Searches for Workspaces, Documents, RDOs, and system types, and reports the query execution progress.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to query for. Pass -1 for admin artifacts.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> object containing conditions, sorting order, fields, and other information for the query.</param>
+            <param name="start">Index of the first artifact in the returned <see cref="T:Relativity.ObjectManager.V1.Models.QueryResult"/> object.</param>
+            <param name="length">Number of items to return in the query result, starting with index in the start parameter.</param>
+            <param name="progress">Contains a callback that reports query execution progress.</param>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.QueryAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Int32,System.Int32,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.ProgressReport})">
+            <summary>
+            Searches for Workspaces, Documents, RDOs, and system types, reports the query execution progress, and provides a token used for canceling the query.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to query for. Pass -1 for admin artifacts.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> object containing conditions, sorting order, fields, and other information for the query.</param>
+            <param name="start">Index of the first artifact in the returned <see cref="T:Relativity.ObjectManager.V1.Models.QueryResult"/> object.</param>
+            <param name="length">Number of items to return in the query result, starting with index in the start parameter.</param>
+            <param name="cancel">Used to request the cancellation of the object query.</param>
+            <param name="progress">Contains a callback that reports query execution progress.</param>
+            <returns>Returns the results of the executed query.</returns>
+            <remarks>The QueryAsync() methods support querying for the following system types: Application, Batch, Batch Sets, Choice, Client, Group, Markup Set, User, 
+            Object Type, Tab, Folder, Layout, View, Workspace, Error, Field, Relativity Script, and Saved Search.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.UpdateRequest)">
+            <summary>
+            Modifies all fields or a specified subset of fields on a Document or Relativity Dynamic Object (RDO). 
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifact to be updated.</param>
+            <param name="request">A request to update a Document or Relativity Dynamic Object (RDO).</param>
+            <returns>An <see cref="T:Relativity.ObjectManager.V1.Models.UpdateResult"/> with event handler statuses.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.UpdateRequest,Relativity.ObjectManager.V1.Models.UpdateOptions)">
+            <summary>
+            Modifies all fields or a specified subset of fields on a Document or Relativity Dynamic Object (RDO), and uses any specified update options.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifact to be updated.</param>
+            <param name="request">A request to update a Document or Relativity Dynamic Object (RDO).</param>
+            <param name="operationOptions">An options object containing a calling context property providing information used to populate data for event handlers.</param>
+            <returns>An <see cref="T:Relativity.ObjectManager.V1.Models.UpdateResult"/> with event handler statuses.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.ReadAsync(System.Int32,Relativity.ObjectManager.V1.Models.ReadRequest)">
+            <summary>
+            Retrieves all fields or a specified subset of fields on a Document or Relativity Dynamic Object (RDO). 
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be read.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.ReadRequest"/> object containing fields to read on a <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/>.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.ReadResult"/> returning the specified fields on the referenced Document or RDO.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.ReadAsync(System.Int32,Relativity.ObjectManager.V1.Models.ReadRequest,Relativity.ObjectManager.V1.Models.OperationOptions)">
+            <summary>
+            Retrieves all fields or a specified subset of fields on a Document or Relativity Dynamic Object (RDO). 
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be read.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.ReadRequest"/> object containing fields to read on a <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/>.</param>
+            <param name="operationOptions">An options object containing a calling context property providing information used to populate data for event handlers.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.ReadResult"/> returning the specified fields on the referenced Document or RDO.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.ReadAsync(System.Int32,Relativity.ObjectManager.V1.Models.ReadRequest,Relativity.ObjectManager.V1.Models.ReadOptions)">
+            <summary>
+            Retrieves all fields or a specified subset of fields on a Document or Relativity Dynamic Object (RDO). 
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be read.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.ReadRequest"/> object containing fields to read on a <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/>.</param>
+            <param name="readOptions">An options object containing a calling context property providing information used to populate data for event handlers
+            as well additional options for handling long text fields.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.ReadResult"/> returning the specified fields on the referenced Document or RDO.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.DeleteRequest)">
+            <summary>
+            Deletes Documents or Relativity Dynamic Objects (RDOs) and their associated files.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="request">A request to delete a Document or Relativity Dynamic Object (RDO).</param>
+            <returns>Returns the results of a delete operation as a <see cref="T:Relativity.ObjectManager.V1.Models.DeleteResult"/> containing information about the deleted items.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.DeleteRequest,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress})">
+            <summary>
+            Deletes Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a list of identifiers, provides a token used for canceling the operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="request">A request to delete a Document or Relativity Dynamic Object (RDO).</param>
+            <param name="cancel">Used to request cancel of the object delete execution.</param>
+            <param name="progress">Contains a callback that reports query execution progress.</param>
+            <returns>Returns the results of a delete operation as a <see cref="T:Relativity.ObjectManager.V1.Models.DeleteResult"/> containing information about the deleted items.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.DeleteRequest,System.Threading.CancellationToken)">
+            <summary>
+            Deletes Documents or Relativity Dynamic Objects (RDOs) and their associated files, as well as reports the query execution progress, and provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="request">A request to delete a Document or Relativity Dynamic Object (RDO).</param>
+            <param name="cancel">Used to request cancel of the object delete execution.</param>
+            <returns>Returns the results of a delete operation as a <see cref="T:Relativity.ObjectManager.V1.Models.DeleteResult"/> containing information about the deleted items.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.DeleteRequest,System.IProgress{Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress})">
+            <summary>
+            Deletes Documents or Relativity Dynamic Objects (RDOs) and their associated files, as well as reports the query execution progress, and provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="request">A request to delete a Document or Relativity Dynamic Object (RDO).</param>
+            <param name="progress">Contains a callback that reports query execution progress.</param>
+            <returns>Returns the results of a delete operation as a <see cref="T:Relativity.ObjectManager.V1.Models.DeleteResult"/> containing information about the deleted items.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.CreateAsync(System.Int32,Relativity.ObjectManager.V1.Models.CreateRequest)">
+            <summary>
+            Creates a Relativity Dynamic Object (RDO) with the specified fields.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be created.</param>
+            <param name="request">A request to create a Relativity Dynamic Object (RDO).</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.CreateResult"/> containing event handler statuses, and a <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/>.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.CreateAsync(System.Int32,Relativity.ObjectManager.V1.Models.CreateRequest,Relativity.ObjectManager.V1.Models.OperationOptions)">
+            <summary>
+            Creates a Relativity Dynamic Object (RDO) with the specified fields using a calling context.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be created.</param>
+            <param name="request">A request to create a Relativity Dynamic Object (RDO).</param>
+            <param name="operationOptions">An object containing a calling context property providing information used to populate data for event handlers.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.CreateResult"/> containing event handler statuses, and a <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/>.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.QuerySlimAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Int32,System.Int32)">
+            <summary>
+            Query for Workspaces, Documents, RDOs, and system types. This returns a slimmer payload aimed towards display of the query results in a grid.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to query for. Pass -1 for admin artifacts.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> object containing conditions, sorting order, fields and other information for the query.</param>
+            <param name="start">Index of the first artifact in the returned <see cref="T:Relativity.ObjectManager.V1.Models.QueryResult"/> object.</param>
+            <param name="length">Number of items to return in the query result, starting with index in the start parameter.</param>
+            <returns>Returns the results of the executed query.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.QuerySlimAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Int32,System.Int32,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.ProgressReport})">
+            <summary>
+            Query for Workspaces, Documents, RDOs, and system types. This returns a slimmer payload aimed towards display of the query results in a grid.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to query for. Pass -1 for admin artifacts.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> object containing conditions, sorting order, fields and other information for the query.</param>
+            <param name="start">Index of the first artifact in the returned <see cref="T:Relativity.ObjectManager.V1.Models.QueryResult"/> object.</param>
+            <param name="length">Number of items to return in the query result, starting with index in the start parameter.</param>
+            <param name="cancel">A request to cancel the execution of a create job for an object.</param>
+            <param name="progress">A callback that reports create execution progress.</param>
+            <returns>Returns the results of the executed query.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.QuerySlimAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Query for Workspaces, Documents, RDOs, and system types. This returns a slimmer payload aimed towards display of the query results in a grid.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to query for. Pass -1 for admin artifacts.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> object containing conditions, sorting order, fields and other information for the query.</param>
+            <param name="start">Index of the first artifact in the returned <see cref="T:Relativity.ObjectManager.V1.Models.QueryResult"/> object.</param>
+            <param name="length">Number of items to return in the query result, starting with index in the start parameter.</param>
+            <param name="cancel">A request to cancel the execution of a create job for an object.</param>
+            <returns>Returns the results of the executed query.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.QuerySlimAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Int32,System.Int32,System.IProgress{Relativity.ObjectManager.V1.Models.ProgressReport})">
+            <summary>
+            Query for Workspaces, Documents, RDOs, and system types. This returns a slimmer payload aimed towards display of the query results in a grid.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to query for. Pass -1 for admin artifacts.</param>
+            <param name="request">A <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> object containing conditions, sorting order, fields and other information for the query.</param>
+            <param name="start">Index of the first artifact in the returned <see cref="T:Relativity.ObjectManager.V1.Models.QueryResult"/> object.</param>
+            <param name="length">Number of items to return in the query result, starting with index in the start parameter.</param>
+            <param name="progress">A callback that reports create execution progress.</param>
+            <returns>Returns the results of the executed query.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.StreamLongTextAsync(System.Int32,Relativity.ObjectManager.V1.Models.RelativityObjectRef,Relativity.ObjectManager.V1.Models.FieldRef)">
+            <summary>
+            Retrieves the contents of a long text field on a Document or Relativity Dynamic Object (RDO) as a stream.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the object to be retrieved.</param>
+            <param name="exportObject">A <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> of the Document or Relativity Dynamic Object (RDO) that contains the text to be streamed.</param>
+            <param name="longTextField">A <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/> of the long text field that contains the text to be streamed.</param>
+            <returns>
+            A <see cref="T:Relativity.Kepler.Transport.IKeplerStream"/> that contains the content of the selected long text field.
+            This stream is the text encoded in either <see cref="P:System.Text.Encoding.Unicode"/> for unicode-enabled fields or <see cref="P:System.Text.Encoding.ASCII"/> otherwise.
+            </returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.InitializeExportAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Int32)">
+            <summary>
+            Initializes an export job, populated with the results of a <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/>. 
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the data to export.</param>
+            <param name="queryRequest">Query that specifies the data set to export.
+            Includes ObjectType and Fields to be exported, query information to determine the set of objects to export, and an optional maximum length to export inline.</param>
+            <param name="start">The record index to begin exporting from.</param>
+            <returns>An <see cref="T:Relativity.ObjectManager.V1.Models.ExportInitializationResults"/> containing an export run ID, and a count of records to be exported.</returns>
+            <remarks>After initialization, results can be retrieved using <see cref="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.RetrieveNextResultsBlockFromExportAsync(System.Int32,System.Guid,System.Int32)"/> or <see cref="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.RetrieveResultsBlockFromExportAsync(System.Int32,System.Guid,System.Int32,System.Int32)"/>.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.InitializeExportAsync(System.Int32,Relativity.ObjectManager.V1.Models.QueryRequest,System.Guid,System.Int32)">
+            <summary>
+            Initializes an export job, populated with the results of a <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> and ExportTableRequest key. 
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the data to export.</param>
+            <param name="queryRequest">Query that specifies the data set to export.
+            Includes ObjectType and Fields to be exported, query information to determine the set of objects to export, and an optional maximum length to export inline.</param>
+            <param name="requestKey">GUID of an ExportTableRequest record that has been specified in SQL.</param>
+            <param name="start">The record index to begin exporting from.</param>
+            <returns>An <see cref="T:Relativity.ObjectManager.V1.Models.ExportInitializationResults"/> containing an export run ID, and a count of records to be exported.</returns>
+            <remarks>After initialization, results can be retrieved using <see cref="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.RetrieveNextResultsBlockFromExportAsync(System.Int32,System.Guid,System.Int32)"/> or <see cref="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.RetrieveResultsBlockFromExportAsync(System.Int32,System.Guid,System.Int32,System.Int32)"/>.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.RetrieveNextResultsBlockFromExportAsync(System.Int32,System.Guid,System.Int32)">
+            <summary>
+            Retrieves a results block from a given export set. 
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the data to export.</param>
+            <param name="runID">The run ID of the export generated from initialization.</param>
+            <param name="batchSize">The desired number of results to return from the export set; note that this size may be capped by an internal limit.</param>
+            <returns>The next block of export results, or null if the export is complete .</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.RetrieveResultsBlockFromExportAsync(System.Int32,System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Retrieves a specified results block from a given export set.
+            </summary>
+            <param name="workspaceID">The ID of the workspace containing the data to export.</param>
+            <param name="runID">The run ID of the export generated from initialization.</param>
+            <param name="resultsBlockSize">The desired number of results to return from the export set; note that this size may be capped by an internal limit.</param>
+            <param name="exportIndexID">The export index ID to start from in the export set.</param>
+            <returns>The block of export results, or an empty array if the block is unavailable.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassDeleteByObjectIdentifiersRequest)">
+            <summary>
+            Deletes a set of Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a list of identifiers.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="massRequestByObjectIdentifiers">A request to delete multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassDeleteResult"/> containing information about the deleted items.</returns>
+            <remarks>Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassDeleteByObjectIdentifiersRequest,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Deletes a set of Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a list of identifiers, returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="massRequestByObjectIdentifiers">A request to delete multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="progress">A callback that reports delete execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassDeleteResult"/> containing information about the deleted items.</returns>
+            <remarks>Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassDeleteByObjectIdentifiersRequest,System.Threading.CancellationToken)">
+            <summary>
+            Deletes a set of Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a list of identifiers, and provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="massRequestByObjectIdentifiers">A request to delete multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="cancel">A request to cancel the execution of a delete job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassDeleteResult"/> containing information about the deleted items.</returns>
+            <remarks>Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassDeleteByObjectIdentifiersRequest,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Deletes a set of Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a list of identifiers, provides a token used for canceling the operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="massRequestByObjectIdentifiers">A request to delete multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="cancel">A request to cancel the execution of a delete job for an object.</param>
+            <param name="progress">A callback that reports delete execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassDeleteResult"/> containing information about the deleted items.</returns>
+            <remarks>Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassDeleteByCriteriaRequest)">
+            <summary>
+            Deletes Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a set of search or view conditions.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="massRequestByCriteria">A request to delete multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassDeleteResult"/> containing information about the deleted items.</returns>
+            <remarks>Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassDeleteByCriteriaRequest,System.Threading.CancellationToken)">
+            <summary>
+            Deletes Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a set of search or view conditions, and provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="massRequestByCriteria">Information about the set of RDOs to be deleted.</param>
+            <param name="cancel">A request to cancel the execution of a delete job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassDeleteResult"/> containing information about the deleted items.</returns>
+            <remarks>Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassDeleteByCriteriaRequest,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Deletes Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a set of search or view conditions, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="massRequestByCriteria">Information about the set of RDOs to be deleted.</param>
+            <param name="progress">A callback that reports delete execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassDeleteResult"/> containing information about the deleted items.</returns>
+            <remarks>Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.DeleteAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassDeleteByCriteriaRequest,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Deletes Documents or Relativity Dynamic Objects (RDOs) and their associated files, based on a set of search or view conditions, provides a token used for canceling the operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be deleted.</param>
+            <param name="massRequestByCriteria">Information about the set of RDOs to be deleted.</param>
+            <param name="cancel">A request to cancel the execution of a delete job for an object.</param>
+            <param name="progress">A callback that reports delete execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassDeleteResult"/> containing information about the deleted items.</returns>
+            <remarks>Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.CreateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassCreateRequest)">
+            <summary>
+            Creates a set of Relativity Dynamic Objects (RDOs) with the specified fields.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be created.</param>
+            <param name="massRequest">A request to create multiple Relativity Dynamic Objects (RDOs).</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassCreateResult"/> containing a list of created RDOs and a message when an error occurs.</returns>
+            <remarks>Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.CreateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassCreateRequest,System.Threading.CancellationToken)">
+            <summary>
+            Creates a set of Relativity Dynamic Objects (RDOs) with the specified fields, and provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be created.</param>
+            <param name="massRequest">A request to create multiple Relativity Dynamic Objects (RDOs).</param>
+            <param name="cancel">A request to cancel the execution of a create job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassCreateResult"/> containing a list of created RDOs and a message when an error occurs.</returns>
+            <remarks>Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.CreateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassCreateRequest,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Creates a set of Relativity Dynamic Objects (RDOs) with the specified fields, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be created.</param>
+            <param name="massRequest">A request to create multiple Relativity Dynamic Objects (RDOs).</param>
+            <param name="progress">A callback that reports create execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassCreateResult"/> containing a list of created RDOs and a message when an error occurs.</returns>
+            <remarks>Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.CreateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassCreateRequest,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Creates a set of Relativity Dynamic Objects (RDOs) with the specified fields, provides a token used for canceling the operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be created.</param>
+            <param name="massRequest">A request to create multiple Relativity Dynamic Objects (RDOs).</param>
+            <param name="cancel">A request to cancel the execution of a create job for an object.</param>
+            <param name="progress">A callback that reports create execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassCreateResult"/> containing a list of created RDOs and a message when an error occurs.</returns>
+            <remarks>Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers by setting the fields to the same value.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByObjectIdentifiers">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest"/> object specifies the identifiers used to select a list of objects with the same type for updating. It also includes the same 
+            values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent to the user selecting the Checked or These option in 
+            the mass operations bar on a list page.
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to the same value. Also, uses any specified update options.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByObjectIdentifiers">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="options">Specifies update behavior.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest"/> object specifies the identifiers used to select a list of objects with the same 
+            type for updating. It also includes the same values for all object fields that are to be updated. In the Relativity UI, 
+            this update operation is equivalent to the user selecting the Checked or These option in the mass operations bar on a list page.
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest,System.Threading.CancellationToken)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to the same value. Also, provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByObjectIdentifiers">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest"/> object specifies the identifiers used to select a list of objects with the same type for updating. 
+            It also includes the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent 
+            to the user selecting the Checked or These option in the mass operations bar on a list page.
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.Threading.CancellationToken)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to the same value. Also, uses any specified update options and provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByObjectIdentifiers">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest"/> object specifies the identifiers used to select a list of objects with the same type for updating. 
+            It also includes the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent 
+            to the user selecting the Checked or These option in the mass operations bar on a list page.
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of 
+            identifiers by setting the fields to the same value. Also, returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByObjectIdentifiers">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest"/> object specifies the identifiers used to select a list of objects with the 
+            same type for updating. It also includes the same values for all object fields that are to be updated. In the Relativity UI, 
+            this update operation is equivalent to the user selecting the Checked or These option in the mass operations bar on a list page.
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to the same value. Also, uses any specified update options and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByObjectIdentifiers">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest"/> object specifies the identifiers used to select a list of objects with the same type for updating. 
+            It also includes the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent 
+            to the user selecting the Checked or These option in the mass operations bar on a list page.
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to the same value. Also, provides a token used for canceling the operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByObjectIdentifiers">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest"/> object specifies the identifiers used to select a list of objects with the same type for updating.
+            It also includes the same values for all object fields that are to be updated. In the Relativity UI, this update operation is
+            equivalent to the user selecting the Checked or These option in the mass operations bar on a list page.
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to the same value. Also, uses any specified update options, provides a token used for canceling the 
+            operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByObjectIdentifiers">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest"/> object specifies the identifiers used to select a list of objects with the same type for updating. 
+            It also includes the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent 
+            to the user selecting the Checked or These option in the mass operations bar on a list page.
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match the search or view conditions by setting the fields to the same value.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByCriteria">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest"/> object specifies the view or search conditions used to select a list of objects with the same type for updating. 
+            It also specifies the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent to 
+            the user selecting the All option in the mass operations bar on a list page.
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match the 
+            search or view conditions by setting the fields to the same value. Also, uses any specified update options.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByCriteria">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <param name="options">Specifies update behavior.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest"/> object specifies the view or search conditions used to select a list of objects with the same type for updating. 
+            It also specifies the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent to 
+            the user selecting the All option in the mass operations bar on a list page.
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest,System.Threading.CancellationToken)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match the search 
+            or view conditions by setting the fields to the same value. Also, provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByCriteria">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest"/> object specifies the view or search conditions used to select a list of objects with the same type 
+            for updating. It also specifies the same values for all object fields that are to be updated. In the Relativity UI, this update 
+            operation is equivalent to the user selecting the All option in the mass operations bar on a list page.
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.Threading.CancellationToken)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match the search or view conditions 
+            by setting the fields to the same value. Also, uses any specified update options and provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByCriteria">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest"/> object specifies the view or search conditions used to select a list of objects with the same type for updating. 
+            It also specifies the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent to 
+            the user selecting the All option in the mass operations bar on a list page.
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match the search 
+            or view conditions by setting the fields to the same value. Also, returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByCriteria">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest"/> object specifies the view or search conditions used to select a list of objects with the same type for 
+            updating. It also specifies the same values for all object fields that are to be updated. In the Relativity UI, this update operation 
+            is equivalent to the user selecting the All option in the mass operations bar on a list page.
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match the search or view conditions 
+            by setting the fields to the same value. Also, uses any specified update options and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByCriteria">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest"/> object specifies the view or search conditions used to select a list of objects with the same type for updating. 
+            It also specifies the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent 
+            to the user selecting the All option in the mass operations bar on a list page.
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match the search or view conditions by 
+            setting the fields to the same value. Also, provides a token used for canceling the operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByCriteria">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest"/> object specifies the view or search conditions used to select a list of objects with the same type for updating. 
+            It also specifies the same values for all object fields that are to be updated. In the Relativity UI, this update operation is equivalent to 
+            the user selecting the All option in the mass operations bar on a list page.
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match the search or view conditions 
+            by setting the fields to the same value. Also, uses any specified update options, provides a token used for canceling the operation, 
+            and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestByCriteria">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that meet the specified search or view conditions.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest"/> object specifies the view or search conditions used to select a list of objects with the same type for 
+            updating. It also specifies the same values for all object fields that are to be updated. In the Relativity UI, this update operation 
+            is equivalent to the user selecting the All option in the mass operations bar on a list page.
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers by setting the fields to distinct values.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestPerObjects">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest"/> object specifies identifiers for a list of objects of the same type for updating. It also specifies a distinct value for each object 
+            field that is to be updated. This action is like overlay behavior available through the Relativity Desktop Client (RDC).
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to distinct values. Also, uses any specified update options.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestPerObjects">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="options">Specifies update behavior.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest"/> object specifies identifiers for a list of objects of the same type for updating. 
+            It also specifies a distinct value for each object field that is to be updated. This action is like overlay 
+            behavior available through the Relativity Desktop Client (RDC).
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest,System.Threading.CancellationToken)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to distinct values. Also, provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestPerObjects">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest"/> object specifies identifiers for a list of objects of the same type for updating. 
+            It also specifies a distinct value for each object field that is to be updated. This action is like overlay 
+            behavior available through the Relativity Desktop Client (RDC).
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.Threading.CancellationToken)">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to distinct values. Also, uses any specified update options and provides a token used for canceling the operation.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestPerObjects">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest"/> object specifies identifiers for a list of objects of the same type for updating. 
+            It also specifies a distinct value for each object field that is to be updated. This action is like overlay 
+            behavior available through the Relativity Desktop Client (RDC).
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to distinct values. Also, returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestPerObjects">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest"/> object specifies identifiers for a list of objects of the same type for updating. 
+            It also specifies a distinct value for each object field that is to be updated. This action is like overlay 
+            behavior available through the Relativity Desktop Client (RDC).
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to distinct values. Also, uses any specified update options and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="massRequestPerObjects">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest"/> object specifies identifiers for a list of objects of the same type for updating. 
+            It also specifies a distinct value for each object field that is to be updated. This action is like overlay 
+            behavior available through the Relativity Desktop Client (RDC).
+            Process halts at first failure with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to distinct values. Also, provides a token used for canceling the operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestPerObjects">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest"/> object specifies identifiers for a list of objects of the same type for updating. 
+            It also specifies a distinct value for each object field that is to be updated. This action is like overlay 
+            behavior available through the Relativity Desktop Client (RDC).
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateLongTextFromStreamAsync(System.Int32,Relativity.ObjectManager.V1.Models.UpdateLongTextFromStreamRequest,Relativity.Kepler.Transport.IKeplerStream)">
+            <summary>
+            Updates a single long text field using a stream for input. This method will not trigger event handlers.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifact to be updated.</param>
+            <param name="updateLongTextFromStreamRequest">A request to update the value of a single long text field.</param>
+            <param name="keplerStream">A <see cref="T:Relativity.Kepler.Transport.IKeplerStream"/> will provide the new field value.
+            This stream should contain text encoded in either <see cref="P:System.Text.Encoding.Unicode"/> for unicode-enabled fields or <see cref="P:System.Text.Encoding.ASCII"/> otherwise.</param>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.UpdateAsync(System.Int32,Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest,Relativity.ObjectManager.V1.Models.MassUpdateOptions,System.Threading.CancellationToken,System.IProgress{Relativity.ObjectManager.V1.Models.MassOperationsStateProgress})">
+            <summary>
+            Updates specified fields on a list of Documents or Relativity Dynamic Objects (RDOs) that match a set of identifiers 
+            by setting the fields to distinct values. Also, uses any specified update options, provides a token used for canceling the 
+            operation, and returns progress information.
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifacts to be updated.</param>
+            <param name="massRequestPerObjects">A request to update multiple Documents or Relativity Dynamic Objects (RDOs) that have the specified identifiers.</param>
+            <param name="options">Specifies update behavior.</param>
+            <param name="cancel">A request to cancel the execution of a update job for an object.</param>
+            <param name="progress">A callback that reports update execution progress.</param>
+            <returns>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdateResult"/> with the number of updated objects and a message when any errors occur.</returns>
+            <remarks>A <see cref="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest"/> object specifies identifiers for a list of objects of the same type for updating. 
+            It also specifies a distinct value for each object field that is to be updated. This action is like overlay 
+            behavior available through the Relativity Desktop Client (RDC).
+            Process halts at first failure or upon cancellation with no rollback.</remarks>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Interfaces.IObjectManager.GetDependencyListAsync(System.Int32,Relativity.ObjectManager.V1.Models.DependencyListByObjectIdentifiersRequest)">
+            <summary>
+            Retrieves a list of dependent objects for a set of Documents or Relativity Dynamic Objects (RDOs).
+            </summary>
+            <param name="workspaceID">Workspace ID of the workspace containing the artifact.</param>
+            <param name="request">A request to get a dependency list for a set Documents or Relativity Dynamic Objects (RDO).</param>
+            <returns>A list of <see cref="T:Relativity.Shared.V1.Models.Dependency"/> objects.</returns>
+            <remarks>The dependency results describe which actions would be taken if the set of requested objects were deleted. 
+            Secured results indicate insufficient permissions for deleting the objects.</remarks>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.CallingContext">
+            <summary>
+            Represents information about the web context from which the event handler is being called, such as the layout or page mode.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.CallingContext.Layout">
+            <summary>
+            Gets or set a <see cref="T:Relativity.ObjectManager.V1.Models.LayoutRef"/> containing the name and artifact ID of the layout associated with a call to an event handler.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.CallingContext.Referrer">
+            <summary>
+            Gets or sets a string indicating where the call to the event handler originates. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.CallingContext.PageMode">
+            <summary>
+            Gets or sets the information needed by the event handler about the step in the page workflow associated with a call, such as a layout, list, edit, or other.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.Choice">
+            <summary>
+            Represents the value for choice fields. 
+            </summary>
+            <remarks>
+            A Choice object is returned for single choice fields, while a list of these objects is returned for multiple choice fields.
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Choice.Name">
+            <summary>
+            Gets or sets the user-friendly name of a Choice object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Choice.Guids">
+            <summary>
+            Gets or sets a list of GUIDs used to identify a Choice object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Choice.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of a Choice object. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ChoiceRef">
+            <summary>
+            Represents a key or reference to a Choice object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ChoiceRef.Guid">
+            <summary>
+            Gets or sets a GUID used to identify a Choice object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ChoiceRef.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of a Choice object. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.CreateRequest">
+            <summary>
+            Represents a request to create a Relativity Dynamic Object (RDO). 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.CreateRequest.ParentObject">
+            <summary>
+            Gets or sets the parent <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> of the new object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.CreateRequest.ObjectType">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.ObjectTypeRef"/> for the type of the new object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.CreateRequest.FieldValues">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.FieldRefValuePair"/> collection, which each contain a <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/> and corresponding value to set on the new object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.CreateResult">
+            <summary>
+            Represents the results of a create operation.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.CreateResult.Object">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/> containing the fields and their values constructed by a create operation.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.CreateResult.EventHandlerStatuses">
+            <summary>
+            Gets a collection of <see cref="T:Relativity.ObjectManager.V1.Models.EventHandlerStatus"/> objects containing information about event handler execution.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.DeleteItem">
+            <summary>
+            Provides information about each item that was deleted.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteItem.ObjectTypeName">
+            <summary>
+            Gets or sets a string indicating the type of the object the was deleted.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteItem.Action">
+            <summary>
+            Gets or sets a string indicating the action taken to remove an object, such as delete for child objects, and unlink for associative objects.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteItem.Count">
+            <summary>
+            Gets or sets the number of objects that were deleted.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteItem.Connection">
+            <summary>
+            Gets or sets a string indicating the relationship between the deleted dependent objects, such as parent, child, and associative object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress">
+            <summary>
+            Represents the progress object for mass delete processes.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress.OperationsCompleted">
+            <summary>
+            Gets or sets the operations completed count.
+            </summary>
+            <value>
+            The operations completed.
+            </value>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress.TotalOperations">
+            <summary>
+            Gets or sets the total operations count.
+            </summary>
+            <value>
+            The total operations.
+            </value>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress"/> class.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Relativity.ObjectManager.V1.Models.DeleteProcessStateProgress"/> class with the total operations and operations completed counts.
+            </summary>
+            <param name="totalOperations">The total operations count.</param>
+            <param name="operationsCompleted">The operations completed count.</param>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.DeleteReport">
+            <summary>
+            Contains information about deleted objects as a list of one or more deleted items.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteReport.DeletedItems">
+            <summary>
+            Gets or set a list of <see cref="T:Relativity.ObjectManager.V1.Models.DeleteItem"/> objects containing the number, object type, and other information about the deleted items.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.DeleteRequest">
+            <summary>
+            Represents a request to delete a Document or Relativity Dynamic Object (RDO). 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteRequest.Object">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> for the Document or Relativity Dynamic Object (RDO) to be deleted.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.DeleteResult">
+            <summary>
+            Represents the results of a delete operation.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DeleteResult.Report">
+            <summary>
+            Gets or sets a <see cref="T:Relativity.ObjectManager.V1.Models.DeleteReport"/> containing information about the deleted items.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.DependencyListByObjectIdentifiersRequest">
+            <summary>
+            Represents a request for information about objects dependent on one or more Relativity Objects.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.DependencyListByObjectIdentifiersRequest.Objects">
+            <summary>
+            Gets or sets a list of objects used to generate the dependency list.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.EventHandlerExecutionType">
+            <summary>
+             Specifies the execution type of the event handler.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.EventHandlerExecutionType.PostSave">
+            <summary>
+             Executes after a user changes field values and clicks the Save button.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.EventHandlerExecutionType.PreCascadeDelete">
+            <summary>
+             Executes before the delete process starts for an object that has dependant objects.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.EventHandlerExecutionType.PreDelete">
+            <summary>
+             Executes before an object is deleted.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.EventHandlerExecutionType.PreLoad">
+            <summary>
+             Executes on the an object's view and edit pages.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.EventHandlerExecutionType.PreMassDelete">
+            <summary>
+             Executes before the deletion of a large set of objects.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.EventHandlerExecutionType.PreSave">
+            <summary>
+             Executes after a user changes field values and clicks the Save button.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.EventHandlerRef">
+            <summary>
+            Describes an event handler's origin and execution type.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.EventHandlerRef.ClassName">
+            <summary>
+            Gets the name of the class that defines the event handler.
+            </summary>
+            <remarks>Is null when consumer does not have permission to view the associated application.</remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.EventHandlerRef.EventHandlerType">
+            <summary>
+            Gets the execution type of the event handler.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.EventHandlerRef.Application">
+            <summary>
+            Gets the application which the assembly containing the
+            event handler is associated with.
+            </summary>
+            <remarks>Is null when consumer does not have permission to view the associated application.</remarks>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.EventHandlerStatus">
+            <summary>
+            Contains a message and operation status returned by an event handler.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.EventHandlerStatus.Success">
+            <summary>
+            Gets or sets a Boolean value indicating whether the event handler execution was successful.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.EventHandlerStatus.Message">
+            <summary>
+            Gets or sets a string returned by an event handler.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.EventHandlerStatus.FailingEventHandler">
+            <summary>
+            Gets or sets the identifying information for the event handler that failed.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ExportInitializationResults">
+            <summary>
+            Represents the results of an export initialization request.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ExportInitializationResults.RunID">
+            <summary>
+            The UUID that identifies an active export run
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ExportInitializationResults.RecordCount">
+            <summary>
+            The number of records intialized and ready for export,
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ExportInitializationResults.FieldData">
+            <summary>
+            The list of fields to be exported
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.Field">
+            <summary>
+            Represents a field used to store metadata, choices, and other information in Relativity. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Field.FieldCategory">
+            <summary>
+            Gets or sets the FieldCategory enum used to indicate the specific functionality assigned to a field, such as stores descriptive text or acts as a relational field.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Field.FieldType">
+            <summary>
+            Gets or sets the type of a Relativity field, such as fixed-length text, date, single object, or others. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Field.ViewFieldID">
+            <summary>
+            Gets or sets a unique identifier used to reference a view field. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Field.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of a Field object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Field.Guids">
+            <summary>
+            Gets or sets the GUIDs used to identify a Field object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Field.Name">
+            <summary>
+            Gets or sets the user-friendly name of a Field object. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.FieldCategory">
+            <summary>
+            Specifies the category of a field.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.Generic">
+            <summary>
+            The field doesn't fit in a more specific category.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.FullText">
+            <summary>
+            The field holds descriptive text.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.Identifier">
+            <summary>
+            The field identifies an item, such as a page.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.Reflected">
+            <summary>
+            The field is reflected.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.Comments">
+            <summary>
+            The field is used for a reviewer's comments.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.Relational">
+            <summary>
+            The field is relational, enabling the identification of duplicates and document families.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.ProductionMarker">
+            <summary>
+            The field describes an aspect of a production.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.AutoCreate">
+            <summary>
+            The field is automatically generated.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.FileSize">
+            <summary>
+            The field holds the size of a file in KB.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.FolderName">
+            <summary>
+            The field contains the name of a folder.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.FileInfo">
+            <summary>
+            The field contains metadata or information about a file.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.ParentArtifact">
+            <summary>
+            The field represents the Artifact ID of the parent object.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.MarkupSetMarker">
+            <summary>
+            The field contains the markup set for use in a production.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.GenericSystem">
+            <summary>
+            This field is the same as the Generic enum, except that it can't be deleted.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.MultiReflected">
+            <summary>
+            The field is multireflected.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldCategory.Batch">
+            <summary>
+            The field represents the grouping mechanism for a batch.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.FieldMetadata">
+            <summary>
+            Represents metadata about fields being exported.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldMetadata.FieldType">
+            <summary>
+            The type of the field
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.FieldRef">
+            <summary>
+            Represents a key or reference to a Field object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldRef.ViewFieldID">
+            <summary>
+            Gets or sets a unique identifier used to reference a view field. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldRef.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of a Field object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldRef.Guid">
+            <summary>
+            Gets or sets a GUID used to identify a Field object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldRef.Name">
+            <summary>
+            Gets or sets the user-friendly name of a Field object. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.FieldRefValuePair">
+             <summary>
+             Represents a key or reference to a Field object and the value currently assigned to it.
+             </summary>
+             <remarks>
+             <list type="table">
+             <listheader>
+             <term>FieldType</term>
+             <term>Expected value type</term>
+             </listheader>
+            <item>
+            <term >Fixed-Length Text</term>
+            <term>string</term> 
+            </item> 
+            <item> 
+            <term>Long Text</term> 
+            <term>string</term> 
+            </item>
+            <item>
+            <term >Date</term>
+            <term >DateTime</term>
+            </item>
+            <item>
+            <term>Whole Number</term> 
+            <term >int?</term>
+            </item>
+            <item>
+            <term >Decimal</term>
+            <term >decimal?</term>
+            </item> 
+            <item> 
+            <term>Currency</term>
+            <term >decimal?</term> 
+            </item> 
+            <item> 
+            <term >Yes/No</term>
+            <term >bool?</term> 
+            </item> 
+            <item> 
+            <term>Single Choice</term> 
+            <term >ChoiceRef</term>
+            </item> 
+            <item> 
+            <term >Multiple Choice</term> 
+            <term >IEnumerable&lt; ChoiceRef&gt;</term> 
+            </item> 
+            <item> 
+            <term>User</term> 
+            <term >User(The ArtifactID must be set on this object.)</term> 
+            </item> 
+            <item> 
+            <term >File</term> 
+            <term >FileRef</term> 
+            </item> 
+            <item> 
+            <term    >Single Object</term>
+            <term >RelativityObjectRef</term>
+            </item> 
+            <item> 
+            <term >Multiple Object</term> 
+            <term >IEnumerable&lt; RelativityObjectRef&gt;</term> 
+            </item> 
+             </list>
+             </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldRefValuePair.Value">
+            <summary>
+            Gets or sets the value assigned to a field.  
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldRefValuePair.Field">
+            <summary>
+            Gets or sets a <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/> object.  
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.FieldType">
+            <summary>
+            Specifies the type of a Relativity field, such as fixed-length text, date, single object etc. 
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.Empty">
+            <summary>
+            Empty Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.FixedLengthText">
+            <summary>
+            Fixed-Length Text Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.WholeNumber">
+            <summary>
+            Whole Number Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.Date">
+            <summary>
+            Date Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.YesNo">
+            <summary>
+            Yes/No Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.LongText">
+            <summary>
+            Long-Text Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.SingleChoice">
+            <summary>
+            Single Choice Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.Decimal">
+            <summary>
+            Decimal Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.Currency">
+            <summary>
+            Currency Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.MultipleChoice">
+            <summary>
+            Multiple Choice Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.File">
+            <summary>
+            File Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.SingleObject">
+            <summary>
+            Single Object Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.User">
+            <summary>
+            User Field
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldType.MultipleObject">
+            <summary>
+            Multiple Object Field
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.FieldUpdateBehavior">
+            <summary>
+            Specifies how to update multiple choice and multiple object fields. 
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldUpdateBehavior.Replace">
+            <summary>
+            Overwrites the current values for the choice or object field with those passed into the service. 
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldUpdateBehavior.Merge">
+            <summary>
+            Merges the values passed into the service with the current values for the choice or object field. 
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.FieldUpdateBehavior.Remove">
+            <summary>
+            Removes the values passed into the service from the current values for the choice or object field.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.FieldValuePair">
+             <summary>
+             Represents a field and the value currently assigned to it.
+             </summary>
+             <remarks>
+             <list type="table">
+             <listheader>
+             <term>FieldType</term>
+             <term>Expected value type</term>
+             </listheader>
+            <item>
+            <term >Fixed-Length Text</term>
+            <term>string</term> 
+            </item> 
+            <item> 
+            <term>Long Text</term> 
+            <term>string</term> 
+            </item>
+            <item>
+            <term >Date</term>
+            <term >DateTime</term>
+            </item>
+            <item>
+            <term>Whole Number</term> 
+            <term >int?</term>
+            </item>
+            <item>
+            <term >Decimal</term>
+            <term >decimal?</term>
+            </item> 
+            <item> 
+            <term>Currency</term>
+            <term >decimal?</term> 
+            </item> 
+            <item> 
+            <term >Yes/No</term>
+            <term >bool?</term> 
+            </item> 
+            <item> 
+            <term>Single Choice</term> 
+            <term >ChoiceRef</term>
+            </item> 
+            <item> 
+            <term >Multiple Choice</term> 
+            <term >IEnumerable&lt; ChoiceRef&gt;</term> 
+            </item> 
+            <item> 
+            <term>User</term> 
+            <term >User(The ArtifactID must be set on this object.)</term> 
+            </item> 
+            <item> 
+            <term >File</term> 
+            <term >FileRef</term> 
+            </item> 
+            <item> 
+            <term    >Single Object</term>
+            <term >RelativityObjectValue</term>
+            </item> 
+            <item> 
+            <term >Multiple Object</term> 
+            <term >IEnumerable&lt; RelativityObjectValue&gt;</term> 
+            </item> 
+             </list>
+             </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldValuePair.Value">
+            <summary>
+            Gets or sets the value assigned to a field. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FieldValuePair.Field">
+            <summary>
+            Gets or sets a Field object.  
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.FileObject">
+            <summary>
+            Represents a file used as a value for file fields in Relativity. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FileObject.FileID">
+            <summary>
+            Gets or sets the File ID of a File object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FileObject.FileFieldArtifactID">
+            <summary>
+            Gets or sets the File field ArtifactID of a File object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.FileObject.FileName">
+            <summary>
+            Gets or sets the name of a File object. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IHasArtifactID">
+            <summary>
+            Enables a class to return the Artifact ID of an object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.IHasArtifactID.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of an object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IHasArtifactTypeID">
+            <summary>
+            Enables a class to return the Artifact Type ID of an object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.IHasArtifactTypeID.ArtifactTypeID">
+            <summary>
+            Gets or sets the Artifact Type ID of an object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IHasGuid">
+            <summary>
+            Enables a class to return a GUID for an object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.IHasGuid.Guid">
+            <summary>
+            Gets or sets a GUID for an object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IHasGuids">
+            <summary>
+            Enables a class to return a list of GUIDs for an object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.IHasGuids.Guids">
+            <summary>
+            Gets or sets a list of GUIDs for an object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IHasIdentifyingInformation">
+            <summary>
+            Implemented by a class to indicate that it contains identifiers used for specifying a group of objects.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IHasName">
+            <summary>
+            Enables a class to return the name of an object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.IHasName.Name">
+            <summary>
+            Gets or sets the name of an object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IHasObjectIdentificationCriteria">
+            <summary>
+            Enables a class to return criteria for identifying objects.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.IHasObjectIdentificationCriteria.ObjectIdentificationCriteria">
+            <summary>
+            Gets or sets the conditions used to determine which objects are identified.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IHasViewFieldID">
+            <summary>
+            Enables a class to return the identifier of the view field associated with an object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.IHasViewFieldID.ViewFieldID">
+            <summary>
+            Gets or sets the identifier for a view field associated with an object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IObjectType">
+            <summary>
+            Enables a class to return identifying information for object types.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.IRelativityObject">
+            <summary>
+            Enables a class to return field-value pairs.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.IRelativityObject.Item(System.Int32)">
+            <summary>
+            Gets a field-value pair by using the Artifact ID of the field to retrieve it.
+            </summary>
+            <param name="artifactId">The Artifact ID of a Field object.</param>
+            <returns>A corresponding field-value pair.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.IRelativityObject.FieldValuePairExists(System.Int32)">
+            <summary>
+            Indicates whether the current object contains a <see cref="T:Relativity.ObjectManager.V1.Models.FieldValuePair"/> with the specified Artifact ID.
+            </summary>
+            <param name="artifactId">The Artifact ID of a FieldValuePair object.</param>
+            <returns>Returns true if the FieldValuePair object has the specified Artifact ID.</returns>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.Layout">
+            <summary>
+            Represents a Layout that contains fields used for coding and other purposes in the Relativity UI. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Layout.Name">
+            <summary>
+            Gets or sets the user-friendly name of a Layout object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Layout.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of a Layout object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Layout.Guids">
+            <summary>
+            Gets or sets the GUIDs used to identify a Layout object. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.LayoutRef">
+            <summary>
+            Represents a key or reference to a Layout object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.LayoutRef.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of a Layout object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.LayoutRef.Guid">
+            <summary>
+            Gets or sets a GUID used to identify a Layout object. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.LongTextBehavior">
+            <summary>
+            Controls the behavior that is used when a Long Text field exceeds the configured character limit.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.LongTextBehavior.Default">
+            <summary>
+            Long Text field values will be truncated and followed by an ellipsis when the value exceeds the configured limit.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.LongTextBehavior.Tokenized">
+            <summary>
+            Long Text field values will return a default token when the value exceeds the configured limit.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.LongTextBehavior.DefaultWithErrors">
+            <summary>
+            Long Text field values will be truncated and followed by an ellipsis when the value exceeds the configured limit.
+            If the field has errors, a <see cref="T:Relativity.ObjectManager.V1.Models.TextFieldError"/> object will be returned containing the error message.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.LongTextBehavior.TokenizedWithErrors">
+            <summary>
+            Long Text field values will return a default token when the value exceeds the configured limit.
+            If the field has errors, a <see cref="T:Relativity.ObjectManager.V1.Models.TextFieldError"/> object will be returned containing the error message.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassCreateRequest">
+            <summary>
+            Represents a request to create a multiple Relativity Dynamic Objects (RDOs).
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassCreateRequest.ParentObject">
+            <summary>
+            Gets or sets the Artifact ID of the parent of the new objects.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassCreateRequest.ObjectType">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.ObjectTypeRef"/> for the type of the new objects.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassCreateRequest.Fields">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/> objects to update when the new objects created.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassCreateRequest.ValueLists">
+            <summary>
+            Gets or sets a list of values used to populate the new objects. The order of the values corresponds to the order of the <see cref="P:Relativity.ObjectManager.V1.Models.MassCreateRequest.Fields"/>.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassCreateResult">
+            <summary>
+            Represents the results of a mass create operation.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassCreateResult.Objects">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> instances containing the fields and their values 
+            constructed by a mass create operation. The order of the objects corresponds to the 
+            order of the values passed into the request.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassCreateResult.Success">
+            <summary>
+            Sets a Boolean value to true when no errors occurred while processing the request.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassCreateResult.Message">
+            <summary>
+            Sets explanatory information for an error when one occurs.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassDeleteByCriteriaRequest">
+            <summary>
+            Represents a request to perform a mass delete operation on all Documents or Relativity Dynamic Objects (RDOs) that meet a specified set of conditions.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassDeleteByCriteriaRequest.ObjectIdentificationCriteria">
+            <summary>
+            Gets or sets the conditions used to determine which objects should be deleted.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassDeleteByObjectIdentifiersRequest">
+            <summary>
+            Represents a request to delete multiple Documents or Relativity Dynamic Objects (RDOs).
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassDeleteByObjectIdentifiersRequest.Objects">
+            <summary>
+            Gets or sets a list of objects to be deleted.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassDeleteResult">
+            <summary>
+            Represents the results of a mass delete operation.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassDeleteResult.Report">
+            <summary>
+            Gets or sets a <see cref="T:Relativity.ObjectManager.V1.Models.DeleteReport"/> containing information about the deleted items.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassDeleteResult.Success">
+            <summary>
+            True if no errors occurred while processing the request
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassDeleteResult.Message">
+            <summary>
+            Set if an error occurs, providing more insight with what went wrong
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassOperationsStateProgress">
+            <summary>
+            Represents the progress object for mass operations processes.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassOperationsStateProgress.PercentageComplete">
+            <summary>
+            Gets or sets the percentage of operations complete.
+            </summary>
+            <value>
+            The operations completed.
+            </value>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest">
+            <summary>
+            Represents a request to perform a mass update operation on all Documents or Relativity Dynamic Objects (RDOs) that meet a specified set of conditions.
+            </summary>
+            <remarks>
+            The MassUpdateByCriteriaRequest class specifies the view or search conditions used to select a list of objects 
+            with the same type for updating. It also specifies same value for a specific field that is to be updated on the 
+            objects. In the Relativity UI, this update operation is equivalent to the user selecting the All option in the 
+            mass operations bar on a list page.
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest.FieldValues">
+            <summary>
+            Gets or sets the fields and values used for updating each object. The same value is used for updating a specific field on each object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdateByCriteriaRequest.ObjectIdentificationCriteria">
+            <summary>
+            Gets or sets specific view or search conditions used to select the objects for updating.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest">
+            <summary>
+            Represents a request to perform a mass update operation on a list of Documents or Relativity Dynamic Objects (RDOs) 
+            by modifying each of the specified object fields with the same value.
+            </summary>
+            <remarks>
+            The MassUpdateByObjectIdentifiersRequest class specifies the identifiers used 
+            to select a list of objects with the same type for updating. It also includes 
+            the same values for all object fields that are to be updated. In the Relativity UI, 
+            this update operation is equivalent to the user selecting the Checked or 
+            These option in the mass operations bar on a list page.
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest.Objects">
+            <summary>
+            Gets or sets a list of objects to be updated.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdateByObjectIdentifiersRequest.FieldValues">
+            <summary>
+            Gets or sets the fields and values used for updating each object. The same value is used for updating all object fields that are to be updated.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassUpdateOptions">
+            <summary>
+            Represents information about how a mass update request is performed by replacing or merging field values.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdateOptions.UpdateBehavior">
+            <summary>
+            Gets or set the behavior used when mass updating multiple choice and multiple object fields by replacing or merging values. By default, values are replaced.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest">
+            <summary>
+            Represents a request to perform a mass update operation on a list of Documents or Relativity Dynamic Objects (RDOs) by 
+            modifying each of the specified object fields with a distinct value.
+            </summary>
+            <remarks>
+            The MassUpdatePerObjectsRequest class specifies identifiers for a list of objects 
+            of the same type for updating. It also specifies a distinct value for each object 
+            field that is to be updated. This action is like overlay behavior available through 
+            the Relativity Desktop Client (RDC).
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest.Fields">
+            <summary>
+            Gets or sets a list fields for updating on the specified objects.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdatePerObjectsRequest.ObjectValues">
+            <summary>
+            Gets or sets the objects and their values to be updated. The values must be specified in the same order as the fields.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.MassUpdateResult">
+            <summary>
+            Represents the results of a mass update operation.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdateResult.TotalObjectsUpdated">
+            <summary>
+            Sets the total number of objects successfully updated.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdateResult.Success">
+            <summary>
+            Sets a Boolean value to true when no errors occurred while processing the request.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.MassUpdateResult.Message">
+            <summary>
+            Sets explanatory information for an error when one occurs.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria">
+            <summary>
+            Represents a set of query conditions used to identify a <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.ObjectType">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.ObjectTypeRef"/> for the type of object to identify.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.Condition">
+            <summary>
+             Gets or sets the search criteria, which can be a simple, single-field condition or a complex expression made by combining conditions.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.RelationalField">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/> used to include related items.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.RowCondition">
+            <summary>
+            Gets or sets the row condition criteria.
+            </summary>
+            <remarks>
+            The row condition can be a simple, single-field condition or a complex expression made by combining conditions. 
+            It limits the result set returned after applying all other conditions and including the relational field.
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.SearchProviderCondition">
+            <summary>
+            Gets or sets the search provider search condition.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.QueryHint">
+            <summary>
+            Gets or sets the QueryHint of the currently executing search. A QueryHint is used to optimize the view.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.IsAdhocQuery">
+            <summary>
+            Gets or sets a Boolean value indicating whether the query engine should handle the search or view condition as a query type or simple condition.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.ExecutingSavedSearchID">
+            <summary>
+            Gets or sets the ID of the currently executing saved search.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectIdentificationCriteria.ExecutingViewID">
+            <summary>
+            Gets or sets the ID of the currently executing view.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ObjectRefValuesPair">
+            <summary>
+            Represents a key or reference to a pair of RelativityObjectRefs objects and their associated field values.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectRefValuesPair.Object">
+            <summary>
+            Gets or sets an identifier for a RelativityObject.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectRefValuesPair.Values">
+            <summary>
+            Gets or sets a new field values for the RelativityObject.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ObjectType">
+            <summary>
+            Represents a custom object type added to a workspace. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectType.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of an Object Type. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectType.Name">
+            <summary>
+            Gets or sets the user-friendly name of an Object Type. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectType.Guids">
+            <summary>
+            Gets or sets the GUIDs used to identify the Object Type.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectType.ArtifactTypeID">
+            <summary>
+            Gets or sets the Descriptor Artifact Type ID of the Object Type object. This ID also identifies an Object Type artifact as an ArtifactType.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ObjectTypeRef">
+            <summary>
+            Represents a key or reference to an ObjectType object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectTypeRef.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of an Object Type. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectTypeRef.Name">
+            <summary>
+            Gets or sets the user-friendly name of an Object Type. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectTypeRef.Guid">
+            <summary>
+            Gets or sets a GUID used to identify the Object Type. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ObjectTypeRef.ArtifactTypeID">
+            <summary>
+            Gets or sets the Descriptor Artifact Type ID of the Object Type object. This ID also identifies an Object Type artifact as an ArtifactType.  
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.OperationOptions">
+            <summary>
+            Represents information about how an operation for a request is being called. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.OperationOptions.CallingContext">
+            <summary>
+            Gets or sets information about the web context from which the event handler is being called, such as the layout or page mode. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.PageMode">
+            <summary>
+            Indicates the step in the page workflow in which a call to the event handler originates.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.PageMode.Unknown">
+            <summary>
+            Indicates that the page mode is unknown. 
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.PageMode.View">
+            <summary>
+            Indicates the view page mode. 
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.PageMode.Edit">
+            <summary>
+            Indicates the edit page mode. 
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.PageMode.List">
+            <summary>
+            Indicates the list page mode. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ProgressReport">
+            <summary>
+            Represents a progress update for an operation.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.ProgressReport.#ctor(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Initialized a new progress report object.
+            </summary>
+            <param name="message">The number of completed steps of the total service operation.</param>
+            <param name="completedSteps">The number of completed steps of the total service operation.</param>
+            <param name="totalSteps">The number of total steps of the total service operation.</param>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ProgressReport.Message">
+            <summary>
+            Detailed message describing the current state of progress.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ProgressReport.CompletedSteps">
+            <summary>
+            Number of completed steps of the total service operation.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ProgressReport.TotalSteps">
+            <summary>
+            Number of total steps of the total service operation.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.QueryRequest">
+            <summary>
+            Describes conditions, sorts and fields to be returned for a query.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.ObjectType">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.ObjectTypeRef"/> for the type of object the query will run against.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.Condition">
+            <summary>
+            Gets or sets the search criteria. It can be a simple, single-field condition or a complex expression made by combining conditions.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.Sorts">
+            <summary>
+            Gets or sets the sort order for view results specified as a collection of <see cref="T:Relativity.ObjectManager.V1.Models.Sort"/> objects.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.RelationalField">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.FieldRef"/> used to include related items in query result.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.RowCondition">
+            <summary>
+            Gets or sets the row condition criteria.
+            </summary>
+            <remarks>
+            The row condition can be a simple, single-field condition or a complex expression made by combining conditions. 
+            It limits the result set returned after applying all other conditions and including the relational field.
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.SearchProviderCondition">
+            <summary>
+            Gets or sets the search provider search condition.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.SampleParameters">
+            <summary>
+            Gets or sets the <see cref="P:Relativity.ObjectManager.V1.Models.QueryRequest.SampleParameters"/> used to take a sample of the query result set.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.IncludeIDWindow">
+            <summary>
+            Gets or sets Boolean value indicating whether the query results should include the IDs of the objects included in the current results set.
+            </summary>
+            <remarks>If a value isn't provided, the ID window will not be included.</remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.RankSortOrder">
+            <summary>
+            Gets or sets the sorting direction of Rank column in the Relativity UI, as either ascending or descending. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.QueryHint">
+            <summary>
+            Gets or sets the QueryHint of the currently executing search. It is used to optimize the view.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.Fields">
+            <summary>
+            Gets or sets a collection of fields like a SELECT statement in an SQL query.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.IsAdhocQuery">
+            <summary>
+            Gets or sets a Boolean value indicating whether the query engine should handle the search or view condition as a query type or simple condition. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.ConvertNumberFieldValuesToString">
+            <summary>
+            Gets or sets a Boolean value indicating whether to convert the numbers returned in the query to text. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.IncludeNameInQueryResult">
+            <summary>
+            Gets or sets Boolean value indicating whether the Name property on the result objects is populated.
+            </summary>
+            <remarks>This option only applies to QueryAsync() method.</remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.ExecutingSavedSearchID">
+            <summary>
+            Gets or sets the ID of the currently executing saved search. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.ExecutingViewID">
+            <summary>
+            Gets or sets the ID of the currently executing view. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.ActiveArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of an item when available in the query results. This item is used to override the start position for the result page.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.MaxCharactersForLongTextValues">
+            <summary>
+            Gets or sets the maximum number of characters returned in the query results for long text fields.  
+            </summary>
+            <remarks>
+            The MaximumNumberOfCharactersSupportedByLongText instance setting determines this number.
+            If a number isn’t specified, the default is 1,000 characters.
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryRequest.LongTextBehavior">
+            <summary>
+            Gets or sets the behavior used when a long text field exceeds the configured character limit.  
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.QueryResult">
+            <summary>
+            Represents the results of a <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> returned by the QueryAsync() method.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.TotalCount">
+            <summary>
+            Gets or sets the total number of objects returned by the query.
+            </summary>
+            <value>The count.</value>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.Objects">
+            <summary>
+            Gets or sets a list of objects in the read results from the query.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.IDWindow">
+            <summary>
+            Gets or sets the Window object containing the IDs of the objects included in the current results set.
+            </summary>
+            <remarks>This property is populated only when the <see cref="P:Relativity.ObjectManager.V1.Models.QueryRequest.IncludeIDWindow"/> property is set to true on the inbound query object.</remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.CurrentStartIndex">
+            <summary>
+            Gets or sets the starting index for a result item in a query result set.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.ResultCount">
+            <summary>
+            Gets or sets the number of result items returned by the current query.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.ObjectType">
+            <summary>
+            Gets or sets the type of the objects returned from a query.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.SampleDetails">
+            <summary>
+            Gets or sets the token used to persist an existing sample from one call to the next. The sample includes the metadata from the sampling run. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.RankWindow">
+            <summary>
+            Gets or sets the set of ranks used to prime the review tool's session.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResult.RelationalField">
+            <summary>
+            Gets or sets the related items included in the result set based on this field.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.QueryResultSlim">
+            <summary>
+            Represents the results of a <see cref="T:Relativity.ObjectManager.V1.Models.QueryRequest"/> returned by the QuerySlimAsync() method.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.TotalCount">
+            <summary>
+            Gets or sets the total number of objects returned by the query.
+            </summary>
+            <value>The count.</value>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.Objects">
+            <summary>
+            Gets a list of objects in read results from the query. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.IDWindow">
+            <summary>
+            Gets or sets the Window object containing the IDs of the objects included in the current results set.
+            </summary>
+            <remarks>This property is populated only when the <see cref="P:Relativity.ObjectManager.V1.Models.QueryRequest.IncludeIDWindow"/> property is set to true on the inbound query object.</remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.CurrentStartIndex">
+            <summary>
+            Gets or sets the starting index for a result item in a query result set.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.ResultCount">
+            <summary>
+            Gets or sets the number of result items returned by the current query.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.ObjectType">
+            <summary>
+            Gets or sets the type of the objects returned from a query.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.SampleDetails">
+            <summary>
+            Gets or sets the token used to persist an existing sample from one call to the next. The sample includes the metadata from the sampling run. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.RankWindow">
+            <summary>
+            Gets or sets the set of ranks used to prime the review tool's session.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.RelationalField">
+            <summary>
+            Gets or sets the related items included in the result set based on this field.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.QueryResultSlim.Fields">
+            <summary>
+            Gets or sets a list of fields associated with the results.  
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ReadOptions">
+            <summary>
+            Represents information about how long text fields are handled during read operations. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadOptions.MaxCharactersForLongTextValues">
+            <summary>
+            Gets or sets the maximum number of characters returned in the read results for long text fields. 
+            </summary>
+            <remarks>
+            The MaximumNumberOfCharactersSupportedByLongText instance setting determines this number. 
+            If a number isn’t specified, the default is 100,000 characters.
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadOptions.LongTextBehavior">
+            <summary>
+            Gets or sets the behavior used when a long text field exceeds the configured character limit.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadOptions.FieldTypesToReturnAsString">
+            <summary>
+            Gets or sets list of field types which should be returned as string.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ReadRequest">
+            <summary>
+            Represents the request for a read operation on Document objects and RDOs. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadRequest.Object">
+            <summary>
+            Gets or sets the RelativityObjectRef object to read. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadRequest.Fields">
+            <summary>
+            Gets or sets the fields to be read on the RelativityObject.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.ReadResult">
+            <summary>
+            Represents the results of a read operation performed through the Object Manager service.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadResult.Message">
+            <summary>
+            Gets a string returned by a Pre Load event handler.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadResult.FailingEventHandler">
+            <summary>
+            Gets or sets the identifying information for the event handler that failed.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadResult.Object">
+            <summary>
+            Gets a RelativityObject instance containing fields and their values that were read. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadResult.ObjectType">
+            <summary>
+            Gets or sets the Object Type for the RelativityObject.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.ReadResult.ObjectVersionToken">
+            <summary>
+            Gets or sets the version token of the RelativityObject. This value could be passed to the Update request to enable record overwrite protection.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.RelativityObject">
+            <summary>
+            Represents an object in Relativity.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObject.ParentObject">
+            <summary>
+            Gets or sets the Artifact ID of the parent of the current object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObject.Name">
+            <summary>
+            Gets or sets the user-friendly name of the object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObject.FieldValues">
+            <summary>
+            Gets or sets a list of fields and their values on the object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObject.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of the current object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObject.Guids">
+            <summary>
+            Gets or sets the GUIDs for the current object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObject.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Relativity.ObjectManager.V1.Models.FieldValuePair"/> on the object with the specified Artifact ID.
+            </summary>
+            <param name="artifactId">The Artifact ID of the Field you are referencing.</param>
+            <returns>The FieldValuePair with the given ArtifactID.</returns>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObject.Item(System.String)">
+            <summary>
+            Gets the <see cref="T:Relativity.ObjectManager.V1.Models.FieldValuePair"/> on the object with the specified field name.
+            </summary>
+            <param name="fieldName">The Name of the Field you are referencing.</param>
+            <returns>The FieldValuePair with the given Field Name.</returns>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObject.Item(System.Guid)">
+            <summary>
+            Gets the <see cref="T:Relativity.ObjectManager.V1.Models.FieldValuePair"/> on the object with the specified GUID.
+            </summary>
+            <param name="guid">The GUID of the Field you are referencing.</param>
+            <returns>The FieldValuePair with the given GUID.</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.RelativityObject.FieldValuePairExists(System.Int32)">
+            <summary>
+            Checks if this object contains a <see cref="T:Relativity.ObjectManager.V1.Models.FieldValuePair"/> with specified Artifact ID.
+            </summary>
+            <param name="artifactId"></param>
+            <returns>True if a FieldValuePair has the artifact id</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.RelativityObject.FieldValuePairExists(System.String)">
+            <summary>
+            Checks if this object contains a <see cref="T:Relativity.ObjectManager.V1.Models.FieldValuePair"/> with specified field name (case-insensitive).
+            </summary>
+            <param name="fieldName"></param>
+            <returns>True if a FieldValuePair has the field name</returns>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.RelativityObject.FieldValuePairExists(System.Guid)">
+            <summary>
+            Checks if this object contains a <see cref="T:Relativity.ObjectManager.V1.Models.FieldValuePair"/> with specified GUID.
+            </summary>
+            <param name="guid"></param>
+            <returns>True if a FieldValuePair has the guid</returns>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef">
+            <summary>
+            Represents the minimal information needed to uniquely identify a RelativityObject.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObjectRef.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of the RelativityObject.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObjectRef.Guid">
+            <summary>
+            Gets or sets a GUID used to identify the RelativityObject.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.RelativityObjectRef.op_Explicit(Relativity.ObjectManager.V1.Models.RelativityObjectValue)~Relativity.ObjectManager.V1.Models.RelativityObjectRef">
+            <summary>
+            Allows explicit conversions from a RelativityObjectValue to a RelativityObjectRef
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.RelativityObjectSlim">
+            <summary>
+            Represents a streamlined <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObject"/> with values that map to fields on a <see cref="T:Relativity.ObjectManager.V1.Models.QueryResultSlim"/> object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObjectSlim.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of the object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObjectSlim.Values">
+            <summary>
+            Gets or sets a list of values for the object. The order of the values corresponds to the order of the fields in the result set.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.RelativityObjectValue">
+            <summary>
+            Represents the value for an object field. 
+            </summary>
+            <remarks>
+            A RelativityObjectValue object is returned for single object fields, while a list of these objects is returned for multiple object fields.
+            </remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObjectValue.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of the object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObjectValue.Guids">
+            <summary>
+            Gets or sets a list of GUIDs used to identify the object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObjectValue.Name">
+            <summary>
+            Gets or sets the user-friendly name of the object. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.RelativityObjectValue.ItemSecured">
+            <summary>
+            Indicates whether the item has been secured from the user
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.SampleDetails">
+            <summary>
+            Contains information used to define a sample set. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SampleDetails.SampleSize">
+            <summary>
+            Gets or sets the number of Documents or Relativity Dynamic Objects (RDOs) in a sample. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SampleDetails.UniverseSize">
+            <summary>
+            Gets or sets the number of Documents or Relativity Dynamic Objects (RDOs) in the results for sampling. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SampleDetails.Token">
+            <summary>
+            Gets or sets the identifier for a sample set. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.SampleParameters">
+            <summary>
+            Contains information about how the sampling is performed. 
+            </summary>
+            <remarks><see cref="P:Relativity.ObjectManager.V1.Models.SampleParameters.MarginOfError"/> and <see cref="P:Relativity.ObjectManager.V1.Models.SampleParameters.ConfidenceLevel"/> must both be provided for a statistical sample.  If either is null, <see cref="P:Relativity.ObjectManager.V1.Models.SampleParameters.FixedSampleSize"/> will be checked. 
+            If that is null, <see cref="P:Relativity.ObjectManager.V1.Models.SampleParameters.SamplingPercentage"/> will then be checked. If none of those conditions are met, an exception will be thrown.</remarks>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SampleParameters.ExistingToken">
+            <summary>
+            Gets or sets the identifier for a sample set. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SampleParameters.MarginOfError">
+            <summary>
+            Gets or sets a value for the margin of error allowable in sample results. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SampleParameters.ConfidenceLevel">
+            <summary>
+            Gets or sets a value for confidence level required for a sample set. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SampleParameters.FixedSampleSize">
+            <summary>
+            Gets or sets a value representing a specific number of items from a group used to create a randomized sample set. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SampleParameters.SamplingPercentage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.SearchIndexRef">
+            <summary>
+            Represents a key or reference to a search provider. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SearchIndexRef.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of a search provider. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SearchIndexRef.Name">
+            <summary>
+            Gets or sets the user-friendly name of a search provider. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.SearchProviderConditions">
+            <summary>
+            Contains the parameters used to execute a query through a search provider.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SearchProviderConditions.SearchIndex">
+            <summary>
+            Gets or sets the Artifact ID of the search provider. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SearchProviderConditions.Input">
+            <summary>
+            Gets or sets a string containing the parameters used for a search provider, which were entered by a user.
+            </summary>
+            <remarks>
+            The Input property gets a string returned by a registered JavaScript function of a search provider in the Relativity UI. 
+            This string contains the parameters, which the user entered in HTML form provided for the search provider. 
+            The value must be valid in order for it to be passed to the ISearchProviderGateway.HydrateInputData() function on the search provider.
+            </remarks>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.SecuredReflectedFieldValue">
+            <summary>
+            Represents a value from a field reflected from a secured object relationship.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.SecuredReflectedFieldValue.ItemSecured">
+            <summary>
+            Indicates whether the item is secured from the current user.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.Security">
+            <summary>
+            Represents information about inherited security settings and user permissions on a specific object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Security.OverwriteInheritedSecurity">
+            <summary>
+            Gets or sets a Boolean value indicating whether the current RelativityObject inherits item level security from another object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Security.UserCanEditSecurity">
+            <summary>
+            Gets or sets a Boolean value indicating whether the requesting user has permission to the current object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.SecurityFieldRef">
+            <summary>
+            Represents a key or reference to a Field object for the special Security field.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.SecurityFieldRef.SECURITY_FIELD_NAME">
+            <summary>
+            The constant value that will be used to determine if a given field is the special Security field
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.SecurityFieldRef.#ctor">
+            <summary>
+            Initializes a SecurityFieldRef with default values.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.SecurityFieldRef.#ctor(System.Int32)">
+            <summary>
+            Initializes a SecurityFieldRef with a provided Artifact ID value.
+            </summary>
+            <param name="artifactID"></param>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Models.SecurityFieldRef.#ctor(System.String)">
+            <summary>
+            Initializes a SecurityFieldRef with a provided Name value.
+            </summary>
+            <param name="name">The name of the Field</param>
+            <remarks>The name parameter is ignored, <see cref="F:Relativity.ObjectManager.V1.Models.SecurityFieldRef.SECURITY_FIELD_NAME"/> is used instead.</remarks>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.Sort">
+            <summary>
+            Represents sorting information for query results.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Sort.FieldIdentifier">
+            <summary>
+            Gets or sets the identifier for the field used to sort the results.
+            </summary>
+            <value>The field identifier.</value>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Sort.Order">
+            <summary>
+            Gets or sets an integer indicating precedence when more than one sort order is defined.
+            </summary>
+            <value>The order.</value>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.Sort.Direction">
+            <summary>
+            Gets or sets the sort order as either ascending or descending. 
+            </summary>
+            <value>The sorting direction.</value>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.SortEnum">
+            <summary>
+            Specifies whether query results are sorted in ascending or descending order. 
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.SortEnum.Ascending">
+            <summary>
+            Sorts results in ascending order.
+            </summary>
+        </member>
+        <member name="F:Relativity.ObjectManager.V1.Models.SortEnum.Descending">
+            <summary>
+            Sorts results in descending order. 
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.TextFieldError">
+            <summary>
+            Represents a value for a text field that could not be properly returned.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.TextFieldError.ErrorMessage">
+            <summary>
+            The error message describing why the field value could not be returned.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.UpdateLongTextFromStreamRequest">
+            <summary>
+            Represents a request object which is used to update a field value from a stream.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.UpdateLongTextFromStreamRequest.Object">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> for the object to update.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.UpdateLongTextFromStreamRequest.Field">
+            <summary>
+            Gets or sets the field to be updated on the object.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.UpdateOptions">
+            <summary>
+            Represents information about how an update request is performed. 
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.UpdateOptions.UpdateBehavior">
+            <summary>
+            Gets or set the behavior used when updating multiple choice and multiple object fields by replacing or merging values. By default, values are replaced.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.UpdateRequest">
+            <summary>
+            Represents an update request for a Document or Relativity Dynamic Object (RDO).
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.UpdateRequest.Object">
+            <summary>
+            Gets or sets the <see cref="T:Relativity.ObjectManager.V1.Models.RelativityObjectRef"/> for the object to update.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.UpdateRequest.FieldValues">
+            <summary>
+            Gets or sets the fields to be updated on the object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.UpdateRequest.ObjectVersionToken">
+            <summary>
+            Gets or sets version token of an object which, if set, will be used for record overwrite protection.
+            It should be acquired from Read operation result.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.UpdateResult">
+            <summary>
+            Represents the results of an update operation.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.UpdateResult.EventHandlerStatuses">
+            <summary>
+            Gets a collection of <see cref="T:Relativity.ObjectManager.V1.Models.EventHandlerStatus"/> objects containing information about event handler execution.
+            </summary>
+        </member>
+        <member name="T:Relativity.ObjectManager.V1.Models.User">
+            <summary>
+            Represents the value of a user field.  
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.User.ArtifactID">
+            <summary>
+            Gets or sets the Artifact ID of a User object.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.User.EmailAddress">
+            <summary>
+            Gets or sets the email address of a user.
+            </summary>
+        </member>
+        <member name="P:Relativity.ObjectManager.V1.Models.User.Name">
+            <summary>
+            Gets or sets the name of a user.
+            </summary>
+        </member>
+        <member name="M:Relativity.ObjectManager.V1.Serialization.FRSerializer.TransformForSerialize(Relativity.ObjectManager.V1.Models.FieldRef)">
+            <summary>
+            Converts the specified FieldRef object into an Object. 
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

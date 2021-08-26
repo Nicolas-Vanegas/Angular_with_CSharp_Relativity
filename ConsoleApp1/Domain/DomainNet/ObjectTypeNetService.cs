@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1.DataProvider.DataProviderNet.Interfaces;
 using ConsoleApp1.Domain.DomainNet.Interfaces;
+using Relativity.Services.Interfaces.ObjectType;
 
 namespace ConsoleApp1.Domain.DomainNet
 {
@@ -10,7 +11,7 @@ namespace ConsoleApp1.Domain.DomainNet
         {
             _objectTypeDataProvider = objectTypeDataProvider;
         }
-        public void CreateObjectType(ServicesMgr helper)
+        public void CreateObjectType(IObjectTypeManager helper)
         {
             var created = true;
             if (!created)

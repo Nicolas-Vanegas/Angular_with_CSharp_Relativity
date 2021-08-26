@@ -5,12 +5,12 @@ namespace ConsoleApp1
 {
     public class InstanceSettingNetRepository : IInstanceSettingsNetRepository
     {
-        public void CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper)
+        public void CreateInstanceSetting(InstanceSettingObject instanceSettingObject, IInstanceSettingManager helper)
         {
             try
             {
 
-                using (var instanceSettingManager = helper.CreateProxy<IInstanceSettingManager>())
+                using (var instanceSettingManager = helper)
                 {
                     Relativity.Services.Interfaces.InstanceSetting.Model.InstanceSettingRequest request = new Relativity.Services.Interfaces.InstanceSetting.Model.InstanceSettingRequest();
                     request.ValueType = Relativity.Services.Interfaces.InstanceSetting.Model.InstanceSettingValueTypeEnum.Integer32;
@@ -28,11 +28,11 @@ namespace ConsoleApp1
             }
         }
 
-        public int GetInstanceSettingValue(int instanceSettingId, ServicesMgr helper)
+        public int GetInstanceSettingValue(int instanceSettingId, IInstanceSettingManager helper)
         {
             try
             {
-                using (IInstanceSettingManager instanceSettingManager = helper.CreateProxy<IInstanceSettingManager>())
+                using (IInstanceSettingManager instanceSettingManager = helper)
                 {
                     Relativity.Services.Interfaces.InstanceSetting.Model.InstanceSettingResponse response = instanceSettingManager.ReadAsync(-1, instanceSettingId).ConfigureAwait(false).GetAwaiter().GetResult();
                     int value = Int32.Parse(response.Value);

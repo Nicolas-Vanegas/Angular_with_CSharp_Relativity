@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.DataProvider.Interfaces;
+using Relativity.Services.Interfaces.InstanceSetting;
 
 namespace ConsoleApp1.DataProvider
 {
@@ -10,12 +11,12 @@ namespace ConsoleApp1.DataProvider
         {
             _instanceSettingNetRepository = instanceSettingNetRepository;
         }
-        public void CreateInstanceSetting(InstanceSettingObject instanceSettingObject, ServicesMgr helper)
+        public void CreateInstanceSetting(InstanceSettingObject instanceSettingObject, IInstanceSettingManager helper)
         {
             _instanceSettingNetRepository.CreateInstanceSetting(instanceSettingObject, helper);
         }
 
-        public int GetInstanceSettingValue(int instanceSettingId, ServicesMgr helper)
+        public int GetInstanceSettingValue(int instanceSettingId, IInstanceSettingManager helper)
         {
             return _instanceSettingNetRepository.GetInstanceSettingValue(instanceSettingId, helper);
         }

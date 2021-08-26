@@ -5,23 +5,164 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\codif\source\repos\ConsoleApp1\CustomPage</_PublishTargetUrl>
-    <History>True|2021-08-23T12:12:46.8525567Z;True|2021-08-23T06:42:49.6947877-05:00;True|2021-08-23T06:42:00.8928724-05:00;True|2021-08-20T19:35:56.2714581-05:00;True|2021-08-20T18:54:34.4459769-05:00;True|2021-08-20T18:49:28.8785766-05:00;True|2021-08-20T17:11:52.6348591-05:00;True|2021-08-20T17:04:00.1551390-05:00;True|2021-08-20T16:43:32.9261228-05:00;True|2021-08-20T11:08:25.8223240-05:00;True|2021-08-20T10:44:05.1605389-05:00;True|2021-08-20T10:41:48.3305471-05:00;</History>
+    <History>True|2021-08-25T12:10:39.4770541Z;True|2021-08-25T06:33:59.2838495-05:00;True|2021-08-24T15:36:34.0860248-05:00;True|2021-08-24T12:24:41.6990476-05:00;True|2021-08-24T11:45:17.5705293-05:00;True|2021-08-23T13:48:41.0396101-05:00;True|2021-08-23T13:44:52.5569356-05:00;True|2021-08-23T07:12:46.8525567-05:00;True|2021-08-23T06:42:49.6947877-05:00;True|2021-08-23T06:42:00.8928724-05:00;True|2021-08-20T19:35:56.2714581-05:00;True|2021-08-20T18:54:34.4459769-05:00;True|2021-08-20T18:49:28.8785766-05:00;True|2021-08-20T17:11:52.6348591-05:00;True|2021-08-20T17:04:00.1551390-05:00;True|2021-08-20T16:43:32.9261228-05:00;True|2021-08-20T11:08:25.8223240-05:00;True|2021-08-20T10:44:05.1605389-05:00;True|2021-08-20T10:41:48.3305471-05:00;</History>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="bin/BCrypt.Net.dll">
+      <publishTime>11/21/2013 11:53:24</publishTime>
+    </File>
+    <File Include="bin/BCrypt.Net.pdb">
+      <publishTime>11/21/2013 11:53:24</publishTime>
+    </File>
+    <File Include="bin/Castle.Core.dll">
+      <publishTime>05/06/2020 06:02:02</publishTime>
+    </File>
+    <File Include="bin/ConsoleApp1.dll">
+      <publishTime>08/25/2021 06:55:36</publishTime>
+    </File>
+    <File Include="bin/ConsoleApp1.dll.config">
+      <publishTime>08/18/2021 17:45:40</publishTime>
+    </File>
+    <File Include="bin/ConsoleApp1.pdb">
+      <publishTime>08/25/2021 06:55:36</publishTime>
+    </File>
+    <File Include="bin/kCura.dll">
+      <publishTime>01/31/2019 09:58:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Authentication.Abstractions.dll">
+      <publishTime>11/12/2018 12:29:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Authentication.Core.dll">
+      <publishTime>11/12/2018 12:29:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Authorization.dll">
+      <publishTime>11/12/2018 12:39:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Authorization.Policy.dll">
+      <publishTime>11/12/2018 12:39:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Hosting.Abstractions.dll">
+      <publishTime>11/12/2018 12:30:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll">
+      <publishTime>11/12/2018 12:30:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Http.Abstractions.dll">
+      <publishTime>11/12/2018 12:29:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Http.dll">
+      <publishTime>11/12/2018 12:29:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Http.Extensions.dll">
+      <publishTime>11/12/2018 12:29:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Http.Features.dll">
+      <publishTime>11/12/2018 12:28:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Mvc.Abstractions.dll">
+      <publishTime>11/12/2018 12:40:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Mvc.Core.dll">
+      <publishTime>04/19/2019 18:24:44</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll">
+      <publishTime>11/12/2018 12:37:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Routing.Abstractions.dll">
+      <publishTime>11/12/2018 12:38:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.Routing.dll">
+      <publishTime>11/12/2018 12:38:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNetCore.WebUtilities.dll">
+      <publishTime>11/12/2018 12:29:00</publishTime>
+    </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.DotNet.PlatformAbstractions.dll">
+      <publishTime>05/15/2018 16:01:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Configuration.Abstractions.dll">
+      <publishTime>11/10/2018 19:26:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+      <publishTime>11/10/2018 19:26:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.DependencyInjection.dll">
+      <publishTime>11/10/2018 19:26:44</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.DependencyModel.dll">
+      <publishTime>05/15/2018 16:01:54</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.FileProviders.Abstractions.dll">
+      <publishTime>11/10/2018 19:26:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Hosting.Abstractions.dll">
+      <publishTime>11/12/2018 12:30:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Logging.Abstractions.dll">
+      <publishTime>11/10/2018 19:26:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.ObjectPool.dll">
+      <publishTime>11/10/2018 19:26:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Options.dll">
+      <publishTime>11/10/2018 19:26:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Extensions.Primitives.dll">
+      <publishTime>11/10/2018 19:26:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Net.Http.Headers.dll">
+      <publishTime>11/12/2018 12:28:58</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
+    <File Include="bin/MiniProfiler.Shared.dll">
+      <publishTime>09/12/2020 06:51:38</publishTime>
+    </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>04/22/2019 01:06:16</publishTime>
     </File>
+    <File Include="bin/Relativity.API.dll">
+      <publishTime>10/29/2020 15:41:28</publishTime>
+    </File>
+    <File Include="bin/Relativity.Audit.Services.Interfaces.dll">
+      <publishTime>10/08/2020 19:32:46</publishTime>
+    </File>
+    <File Include="bin/Relativity.CustomPages.dll">
+      <publishTime>01/31/2019 09:59:02</publishTime>
+    </File>
+    <File Include="bin/Relativity.dll">
+      <publishTime>01/31/2019 09:58:04</publishTime>
+    </File>
+    <File Include="bin/Relativity.Kepler.dll">
+      <publishTime>08/11/2020 16:58:58</publishTime>
+    </File>
+    <File Include="bin/Relativity.Logging.dll">
+      <publishTime>07/24/2018 22:45:18</publishTime>
+    </File>
+    <File Include="bin/Relativity.Logging.Interfaces.dll">
+      <publishTime>07/24/2018 22:45:02</publishTime>
+    </File>
+    <File Include="bin/Relativity.ObjectManager.dll">
+      <publishTime>07/02/2021 17:24:04</publishTime>
+    </File>
+    <File Include="bin/Relativity.Services.DataContracts.dll">
+      <publishTime>09/02/2020 15:04:32</publishTime>
+    </File>
+    <File Include="bin/Relativity.Services.Interfaces.dll">
+      <publishTime>06/18/2020 21:32:48</publishTime>
+    </File>
+    <File Include="bin/Relativity.Services.ServiceProxy.dll">
+      <publishTime>08/11/2020 16:58:22</publishTime>
+    </File>
     <File Include="bin/RelCustomPage.dll">
-      <publishTime>08/23/2021 06:41:59</publishTime>
+      <publishTime>08/25/2021 07:10:38</publishTime>
     </File>
     <File Include="bin/RelCustomPage.pdb">
-      <publishTime>08/23/2021 06:41:59</publishTime>
+      <publishTime>08/25/2021 07:10:38</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/08/2018 05:38:48</publishTime>
@@ -170,8 +311,44 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
+    <File Include="bin/SimpleInjector.dll">
+      <publishTime>11/30/2019 07:12:08</publishTime>
+    </File>
+    <File Include="bin/SimpleInjector.Integration.Web.dll">
+      <publishTime>11/30/2019 07:12:10</publishTime>
+    </File>
+    <File Include="bin/SimpleInjector.Integration.Web.Mvc.dll">
+      <publishTime>11/30/2019 07:12:12</publishTime>
+    </File>
+    <File Include="bin/SimpleInjector.Integration.WebApi.dll">
+      <publishTime>11/30/2019 07:12:08</publishTime>
+    </File>
+    <File Include="bin/System.Buffers.dll">
+      <publishTime>05/15/2018 08:29:34</publishTime>
+    </File>
+    <File Include="bin/System.ComponentModel.Annotations.dll">
+      <publishTime>05/15/2018 08:29:36</publishTime>
+    </File>
+    <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>05/15/2018 08:29:40</publishTime>
+    </File>
+    <File Include="bin/System.Memory.dll">
+      <publishTime>06/06/2018 08:29:04</publishTime>
+    </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
+    </File>
+    <File Include="bin/System.Numerics.Vectors.dll">
+      <publishTime>07/19/2017 05:01:36</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>06/06/2018 08:29:04</publishTime>
+    </File>
+    <File Include="bin/System.Text.Encodings.Web.dll">
+      <publishTime>05/15/2018 08:29:52</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.Extensions.dll">
+      <publishTime>06/06/2018 08:29:04</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>11/28/2018 13:04:24</publishTime>
@@ -197,11 +374,17 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/System.Web.Webpages.Razor.dll">
       <publishTime>11/28/2018 13:04:24</publishTime>
     </File>
+    <File Include="bin/TestHelpers_Kepler_App.rap">
+      <publishTime>04/02/2020 16:45:22</publishTime>
+    </File>
     <File Include="Global.asax">
       <publishTime>08/20/2021 07:51:11</publishTime>
     </File>
+    <File Include="LICENSE.txt">
+      <publishTime>08/24/2021 14:59:53</publishTime>
+    </File>
     <File Include="packages.config">
-      <publishTime>08/20/2021 08:34:20</publishTime>
+      <publishTime>08/24/2021 20:09:02</publishTime>
     </File>
     <File Include="Scripts/angular-animate.js">
       <publishTime>08/20/2021 08:33:23</publishTime>
@@ -2544,7 +2727,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/20/2021 07:51:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/20/2021 11:08:24</publishTime>
+      <publishTime>08/25/2021 06:33:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

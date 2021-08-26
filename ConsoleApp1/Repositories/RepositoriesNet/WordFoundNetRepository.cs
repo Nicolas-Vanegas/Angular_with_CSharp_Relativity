@@ -17,7 +17,7 @@ namespace ConsoleApp1.Repositories.RepositoriesNet
         {
             _words = words;
         }
-        public void CreateWordFoundObject(ServicesMgr helper, List<WordWithDocumentArtifactIdObject> filteredWords, int wordLengthNet)
+        public void CreateWordFoundObject(IObjectManager helper, List<WordWithDocumentArtifactIdObject> filteredWords, int wordLengthNet)
         {
             var definitionsFound = _words.GetDictionary(filteredWords, wordLengthNet);
             var extractedTextAndDocumentArtifactId = new List<DocumentWithExtractedTextObject>();
@@ -69,7 +69,7 @@ namespace ConsoleApp1.Repositories.RepositoriesNet
             };
             try
             {
-                using (var objectManager = helper.CreateProxy<IObjectManager>())
+                using (var objectManager = helper)
                 {
                     var result = objectManager.CreateAsync(Constants.WORKSPACE_ID, massCreateRequest).ConfigureAwait(false).GetAwaiter().GetResult();
                 }

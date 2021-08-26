@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.demo-table {
+  width: 40%;
+  height: 600px;
+}
+
+.cards-container {
+  width: 60%;
+}
+.control-number {
+  cursor: pointer;
+}
+.control-number:hover {
+  background-color: #F9A620;
+}
+
+.mat-column-demo-position {
+  width: 32px;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-demo-name {
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.mat-column-demo-weight {
+  font-style: italic;
+}
+
+.mat-column-demo-symbol {
+  width: 32px;
+  text-align: center;
+  font-weight: bold;
+}

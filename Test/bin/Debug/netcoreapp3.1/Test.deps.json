@@ -1209,7 +1209,7 @@
       "xunit.runner.visualstudio/2.4.3": {},
       "ConsoleApp1/1.0.0": {
         "runtime": {
-          "ConsoleApp1.exe": {}
+          "ConsoleApp1.dll": {}
         }
       },
       "Relativity.Services.ServiceProxy/2.9.2.0": {

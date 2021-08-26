@@ -1,7 +1,9 @@
-﻿namespace ConsoleApp1.DataProvider.DataProviderNet.Interfaces
+﻿using Relativity.Services.Interfaces.ObjectType;
+
+namespace ConsoleApp1.DataProvider.DataProviderNet.Interfaces
 {
     public interface IObjectTypeNetDataProvider
     {
-        void CreateObjectType(ServicesMgr helper);
+        void CreateObjectType(IObjectTypeManager helper);
     }
 }

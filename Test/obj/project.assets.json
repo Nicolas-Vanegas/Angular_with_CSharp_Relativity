@@ -1854,6 +1854,18 @@
         "runtime": {
           "bin/placeholder/ConsoleApp1.dll": {}
         }
+      },
+      "RelCustomPage/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "ConsoleApp1": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RelCustomPage.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RelCustomPage.dll": {}
+        }
       }
     }
   },
@@ -6480,6 +6492,11 @@
       "type": "project",
       "path": "../ConsoleApp1/ConsoleApp1.csproj",
       "msbuildProject": "../ConsoleApp1/ConsoleApp1.csproj"
+    },
+    "RelCustomPage/1.0.0": {
+      "type": "project",
+      "path": "../RelCustomPage/RelCustomPage.csproj",
+      "msbuildProject": "../RelCustomPage/RelCustomPage.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6487,6 +6504,7 @@
       "ConsoleApp1 >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "Moq >= 4.16.1",
+      "RelCustomPage >= 1.0.0",
       "coverlet.collector >= 3.0.2",
       "xunit >= 2.4.1",
       "xunit.categories >= 2.0.5",
@@ -6523,6 +6541,9 @@
           "projectReferences": {
             "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
               "projectPath": "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj"
+            },
+            "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\RelCustomPage\\RelCustomPage.csproj": {
+              "projectPath": "C:\\Users\\codif\\source\\repos\\ConsoleApp1\\RelCustomPage\\RelCustomPage.csproj"
             }
           }
         }

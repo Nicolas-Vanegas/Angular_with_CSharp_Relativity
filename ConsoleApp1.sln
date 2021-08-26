@@ -13,22 +13,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelCustomPage.Tests", "RelC
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		console|Any CPU = console|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CE3E03A-0756-4C03-93E3-0BDD05ABBD56}.console|Any CPU.ActiveCfg = console|Any CPU
+		{4CE3E03A-0756-4C03-93E3-0BDD05ABBD56}.console|Any CPU.Build.0 = console|Any CPU
 		{4CE3E03A-0756-4C03-93E3-0BDD05ABBD56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CE3E03A-0756-4C03-93E3-0BDD05ABBD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE3E03A-0756-4C03-93E3-0BDD05ABBD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE3E03A-0756-4C03-93E3-0BDD05ABBD56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B63C7EDE-B758-4273-9AD6-40FE5E9D48CC}.console|Any CPU.ActiveCfg = Release|Any CPU
 		{B63C7EDE-B758-4273-9AD6-40FE5E9D48CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B63C7EDE-B758-4273-9AD6-40FE5E9D48CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B63C7EDE-B758-4273-9AD6-40FE5E9D48CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B63C7EDE-B758-4273-9AD6-40FE5E9D48CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0B1790-C00F-4045-93AB-BAAC6827426C}.console|Any CPU.ActiveCfg = Release|Any CPU
 		{AF0B1790-C00F-4045-93AB-BAAC6827426C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF0B1790-C00F-4045-93AB-BAAC6827426C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF0B1790-C00F-4045-93AB-BAAC6827426C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF0B1790-C00F-4045-93AB-BAAC6827426C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB731853-2D30-4C7E-A6C6-DBC170C6F5ED}.console|Any CPU.ActiveCfg = Release|Any CPU
 		{FB731853-2D30-4C7E-A6C6-DBC170C6F5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB731853-2D30-4C7E-A6C6-DBC170C6F5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB731853-2D30-4C7E-A6C6-DBC170C6F5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU

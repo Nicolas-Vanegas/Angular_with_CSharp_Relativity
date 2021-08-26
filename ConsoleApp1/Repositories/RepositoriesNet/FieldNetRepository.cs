@@ -9,7 +9,7 @@ namespace ConsoleApp1.Repositories.RepositoriesNet
 {
     public class FieldNetRepository : IFieldNetRepository
     {
-        public void CreateLongTextField(ServicesMgr helper, List<string> fieldNames)
+        public void CreateLongTextField(IFieldManager helper, List<string> fieldNames)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace ConsoleApp1.Repositories.RepositoriesNet
                         AllowSortTally = true,
                         Source = "",
                     };
-                    using (var fieldManager = helper.CreateProxy<IFieldManager>())
+                    using (var fieldManager = helper)
                     {
                         var newFieldId = fieldManager.CreateLongTextFieldAsync(Constants.WORKSPACE_ID, request).ConfigureAwait(false).GetAwaiter().GetResult();
                     }

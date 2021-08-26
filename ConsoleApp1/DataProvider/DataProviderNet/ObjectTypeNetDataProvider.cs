@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1.DataProvider.DataProviderNet.Interfaces;
 using ConsoleApp1.Repositories.RepositoriesNet.Inferfaces;
+using Relativity.Services.Interfaces.ObjectType;
 
 namespace ConsoleApp1.DataProvider.DataProviderNet
 {
@@ -11,7 +12,7 @@ namespace ConsoleApp1.DataProvider.DataProviderNet
             _objectTypeRepository = objectTypeRepository;
         }
 
-        public void CreateObjectType(ServicesMgr helper)
+        public void CreateObjectType(IObjectTypeManager helper)
         {
             _objectTypeRepository.CreateObjectType(helper);
         }

@@ -1,5 +1,7 @@
 ﻿using ConsoleApp1.DataProvider.DataProviderNet.Interfaces;
 using ConsoleApp1.Repositories.RepositoriesNet.Inferfaces;
+using Relativity.Services.Interfaces.Field;
+using Relativity.Services.Interfaces.ObjectType;
 using System.Collections.Generic;
 
 namespace ConsoleApp1.DataProvider.DataProviderNet
@@ -11,7 +13,7 @@ namespace ConsoleApp1.DataProvider.DataProviderNet
         {
             _fieldRepository = fieldRepository;
         }
-        public void CreateLongTextField(ServicesMgr helper, List<string> fieldNames)
+        public void CreateLongTextField(IFieldManager helper, List<string> fieldNames)
         {
             _fieldRepository.CreateLongTextField(helper, fieldNames);
         }

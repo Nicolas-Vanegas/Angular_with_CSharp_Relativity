@@ -1,12 +1,8 @@
-C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
-C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Newtonsoft.Json.xml
-C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.AssemblyReference.cache
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
-C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.API.dll
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.Kepler.dll
@@ -99,3 +95,6 @@ C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.Service
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\SimpleInjector.dll
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\SimpleInjector.xml
 C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Relativity.ObjectModel.dll
+C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.dll.config
+C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.dll
+C:\Users\codif\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.dll

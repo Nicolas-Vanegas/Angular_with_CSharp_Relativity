@@ -1,6 +1,7 @@
 ﻿using ConsoleApp1.DataProvider.DataProviderNet.Interfaces;
 using ConsoleApp1.Domain.DomainNet.Interfaces;
 using ConsoleApp1.Object;
+using Relativity.Services.Objects;
 using System.Collections.Generic;
 
 namespace ConsoleApp1.Domain.DomainNet
@@ -12,7 +13,7 @@ namespace ConsoleApp1.Domain.DomainNet
         {
             _wordFoundNetDataProvider = wordFoundNetDataProvider;
         }
-        public void CreateWordFoundObject(ServicesMgr helper, List<WordWithDocumentArtifactIdObject> filteredWords, int wordLengthNet)
+        public void CreateWordFoundObject(IObjectManager helper, List<WordWithDocumentArtifactIdObject> filteredWords, int wordLengthNet)
         {
             var created = true;
             if (!created)

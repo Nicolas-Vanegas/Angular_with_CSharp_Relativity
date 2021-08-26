@@ -13,7 +13,7 @@ namespace ConsoleApp1.Object
         public static Lazy<ConnectionConfig> Instance = new Lazy<ConnectionConfig>(() => Setup());
         public static ConnectionConfig Setup()
         {
-            var config = Newtonsoft.Json.JsonConvert.DeserializeObject<ConnectionConfig>(File.ReadAllText("Heretik.AI.Tests/config.json"));
+            var config = Newtonsoft.Json.JsonConvert.DeserializeObject<ConnectionConfig>(File.ReadAllText("Tests/config.json"));
             return config;
         }
         public string RestUrl { get; set; }

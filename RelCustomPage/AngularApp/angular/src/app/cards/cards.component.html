@@ -1,0 +1,16 @@
+<div class="card-container">
+  <mat-card class="card" *ngFor="let item of words">
+      <mat-card-header>
+        <mat-card-title>{{item.word}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        <p>{{item.meaning}}</p>
+        <p>{{item.origin}}</p>
+      </mat-card-content>
+      <div class="audio-container">
+        <audio controls>
+          <source [src]="item.audio" type="audio/mpeg">
+        </audio>
+      </div>
+    </mat-card>
+</div>

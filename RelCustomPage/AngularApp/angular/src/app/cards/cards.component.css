@@ -1,0 +1,19 @@
+.card-container {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+}
+.audio-container {
+  position: absolute;
+  bottom: 1rem;
+}
+.card-content {
+  margin-bottom: 5rem ;
+}
+.card {
+  width: 27%;
+  min-width: 25%;
+  position: relative;
+  margin: 0 0 2rem 2rem;
+  word-break: break-all;
+}

@@ -50,34 +50,34 @@ namespace ConsoleApp1.Domain.DomainRest
         public void startApplication()
         {
             //connection
-            var stringsConnection = new StringsConnection();
-            var connection = new HttpClientConnection();
-            var netConnection = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection());
-            var created = true;
+            //var stringsConnection = new StringsConnection();
+            //var connection = new HttpClientConnection();
+            //var netConnection = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection());
+            //var created = true;
 
-            //Create Instance Setting
-            if (!created)
-            {
-                var instanceSettingIdRest = _instanceSettingRestService.CreateInstanceSetting(_instanceSettingObject);
-            }
+            ////Create Instance Setting
+            //if (!created)
+            //{
+            //    var instanceSettingIdRest = _instanceSettingRestService.CreateInstanceSetting(_instanceSettingObject);
+            //}
 
-            var pdfDocumentIds = _documentRestService.Documents(_savedSearchId);
-            var documentTextsRest = _documentRestService.DocumentTexts(pdfDocumentIds);
-            var wordLengthRest = _instanceSettingRestService.GetInstanceSettingValue(Constants.INSTANCE_SETTING_ID);
+            //var pdfDocumentIds = _documentRestService.Documents(_savedSearchId);
+            //var documentTextsRest = _documentRestService.DocumentTexts(pdfDocumentIds);
+            //var wordLengthRest = _instanceSettingRestService.GetInstanceSettingValue(Constants.INSTANCE_SETTING_ID);
 
-            //Filter the words
-            var filteredWordsRest = _words.filteredWords(documentTextsRest, wordLengthRest);
-            var duplicateWordFilter = _words.duplicateWordFilter(filteredWordsRest);
+            ////Filter the words
+            //var filteredWordsRest = _words.filteredWords(documentTextsRest, wordLengthRest);
+            //var duplicateWordFilter = _words.duplicateWordFilter(filteredWordsRest);
 
-            //Create ObjectType and theirs fields
-            if (created)
-            {
-                _objectTypeRestService.CreateObjectType(connection);
-                _fieldNetService.CreateLongTextField(netConnection, _longTextFieldName);
-                _fieldRestService.CreateMultiObjectField(connection, _multiObjectFieldName);
-            }
-            //Create Word Found objects
-            _wordFoundNetService.CreateWordFoundObject(netConnection, duplicateWordFilter, wordLengthRest);
+            ////Create ObjectType and theirs fields
+            //if (created)
+            //{
+            //    _objectTypeRestService.CreateObjectType(connection);
+            //    _fieldNetService.CreateLongTextField(netConnection, _longTextFieldName);
+            //    _fieldRestService.CreateMultiObjectField(connection, _multiObjectFieldName);
+            //}
+            ////Create Word Found objects
+            //_wordFoundNetService.CreateWordFoundObject(netConnection, duplicateWordFilter, wordLengthRest);
         }
     }
 }

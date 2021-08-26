@@ -1,6 +1,7 @@
 ﻿using ConsoleApp1.DataProvider.DataProviderNet.Interfaces;
 using ConsoleApp1.Object;
 using ConsoleApp1.Repositories.RepositoriesNet.Inferfaces;
+using Relativity.Services.Objects;
 using System.Collections.Generic;
 
 namespace ConsoleApp1.DataProvider.DataProviderNet
@@ -12,7 +13,7 @@ namespace ConsoleApp1.DataProvider.DataProviderNet
         {
             _wordFoundNetRepository = wordFoundNetRepository;
         }
-        public void CreateWordFoundObject(ServicesMgr helper, List<WordWithDocumentArtifactIdObject> filteredWords, int wordLengthNet)
+        public void CreateWordFoundObject(IObjectManager helper, List<WordWithDocumentArtifactIdObject> filteredWords, int wordLengthNet)
         {
             _wordFoundNetRepository.CreateWordFoundObject(helper, filteredWords, wordLengthNet);
         }
