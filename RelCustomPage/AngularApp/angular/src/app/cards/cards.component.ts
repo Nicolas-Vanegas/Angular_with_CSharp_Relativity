@@ -25,8 +25,7 @@ export class CardsComponent implements OnInit {
   dictionaryObjects?: DictionaryObjects[] = [];
   phonetics?: Phonetics[] = [];
   meanings?: Meanings [] = [];
-  definitions?: Definitions[] = []; 
-
+  definitions?: Definitions[] = [];
   workspaceId = 1017767;
 
   constructor(private dictionaryService : DictionaryService) {  }
@@ -36,18 +35,26 @@ export class CardsComponent implements OnInit {
   }
 
   printCards(selectedDocumentId?:number) {
-    this.dictionaryService.GetDictionary(this.workspaceId).subscribe((x: DictionaryAndDocId[]) => {
-      this.words = [];
-      this.fillCard(x, selectedDocumentId);
-    })
+    if(this.dictionary.length <= 0){
+      this.dictionaryService.GetDictionary(this.workspaceId).subscribe((x: DictionaryAndDocId[]) => {
+        this.words = [];
+        this.fillDictionary(x, selectedDocumentId);
+        this.fillCard(selectedDocumentId);
+      })
+    }
+    else {
+      this.fillCard(selectedDocumentId);
+    }
   }
 
-  fillCard(dictionaryAndDocId: DictionaryAndDocId[], selectedDocumentId?: number) {
-    this.dictionary = [];
+  fillDictionary(dictionaryAndDocId: DictionaryAndDocId[], selectedDocumentId?: number) {
     dictionaryAndDocId.forEach(dictionary => {
-        this.dictionary.push({artifactId: dictionary.artifactId, dictionaryObjects: dictionary.dictionaryObjects})
+      this.dictionary.push({artifactId: dictionary.artifactId, dictionaryObjects: dictionary.dictionaryObjects})
     });
-    console.log(this.dictionary);
+  }
+  
+  fillCard(selectedDocumentId?:number) {
+    this.words = [];
     this.dictionary.forEach(dictionary => {
       if (dictionary.artifactId === selectedDocumentId)
         {
@@ -56,10 +63,9 @@ export class CardsComponent implements OnInit {
           var theDefinition: string | undefined;
           var theAudio: string | undefined;
           this.dictionaryObjects = dictionary.dictionaryObjects;
-          console.log(this.dictionaryObjects);
           this.dictionaryObjects?.forEach(dic => {
             theWord = dic.word;
-            theOrigin = dic.word;
+            theOrigin = dic.origin;
             this.meanings = dic.meanings;
             this.phonetics = dic.phonetics;
             this.phonetics?.forEach(phonetic => {
@@ -72,11 +78,7 @@ export class CardsComponent implements OnInit {
               });
             });
           });
-          console.log(this.meanings);
-          console.log(this.definitions);
-          console.log(this.phonetics);
           this.words?.push({word: theWord, meaning: theDefinition, origin: theOrigin, audio: theAudio})
-          console.log(this.words);
         }
       });
   }

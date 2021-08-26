@@ -53,12 +53,9 @@ export class TableComponent implements OnInit{
         this.docs.push({ArtifactID: doc.ArtifactID, position: i, ControlNumber: doc.ControlNumber})
         i++;
       });
-      console.log(this.docs);
-    console.log(this.documents);
   }
   
   GenerateCards(artifactId:number){
-    console.log(artifactId);
     this.selectedDocumentId = artifactId;
     this.showCards = true;
     this.child.printCards(artifactId);
