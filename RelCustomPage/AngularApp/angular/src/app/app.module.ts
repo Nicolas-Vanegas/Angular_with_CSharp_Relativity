@@ -9,8 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { DocumentService } from './services/document.service';
 import { CardsComponent } from './cards/cards.component';
 import {MatCardModule} from '@angular/material/card';
-import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { DictionaryService } from './services/dictionary.service';
+import { Store, StoreModule } from '@ngrx/store';
+import { documentsReducer } from './reducer/documents.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { DictionaryService } from './services/dictionary.service';
     MatTableModule,
     MatCardModule,
     HttpClientModule,
-    NgxAudioPlayerModule
+    StoreModule.forRoot({ selectedDocument: documentsReducer })
   ],
   providers: [DocumentService, DictionaryService],
   bootstrap: [AppComponent]

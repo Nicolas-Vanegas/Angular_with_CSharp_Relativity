@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DictionaryService  } from '../services/dictionary.service';
 import { DictionaryAndDocId, DictionaryObjects, Phonetics, Meanings, Definitions } from "../models/models";
+import { select, Store } from '@ngrx/store';
+import * as documentsReducer from '../reducer/documents.reducer';
+import { Observable } from 'rxjs';
 
 
 export class Word {
@@ -18,8 +21,8 @@ export class Word {
 
 export class CardsComponent implements OnInit {
 
-  @Input() selectedDocumentId?: number;
-
+  selectedDocumentId$?: Observable<number>;
+  selectedDocumentId?: number;
   dictionary: DictionaryAndDocId[] = [];
   words?: Word[] = [];
   dictionaryObjects?: DictionaryObjects[] = [];
@@ -28,35 +31,40 @@ export class CardsComponent implements OnInit {
   definitions?: Definitions[] = [];
   workspaceId = 1017767;
 
-  constructor(private dictionaryService : DictionaryService) {  }
+  constructor(private dictionaryService : DictionaryService, private store: Store<{selectedDocument: number}>) {  }
 
   ngOnInit() {
-    this.printCards(this.selectedDocumentId);
+    this.selectedDocumentId$ = this.store.pipe(select(documentsReducer.getSelectedDocumentId));
+    this.printCards();
   }
 
-  printCards(selectedDocumentId?:number) {
+  printCards() {
+    this.selectedDocumentId$ = this.store.pipe(select(documentsReducer.getSelectedDocumentId));
+    this.selectedDocumentId$.subscribe(x => {
+      this.selectedDocumentId = x;
+    });
     if(this.dictionary.length <= 0){
       this.dictionaryService.GetDictionary(this.workspaceId).subscribe((x: DictionaryAndDocId[]) => {
         this.words = [];
-        this.fillDictionary(x, selectedDocumentId);
-        this.fillCard(selectedDocumentId);
+        this.fillDictionary(x);
+        this.fillCard();
       })
     }
     else {
-      this.fillCard(selectedDocumentId);
+      this.fillCard();
     }
   }
 
-  fillDictionary(dictionaryAndDocId: DictionaryAndDocId[], selectedDocumentId?: number) {
+  fillDictionary(dictionaryAndDocId: DictionaryAndDocId[]) {
     dictionaryAndDocId.forEach(dictionary => {
       this.dictionary.push({artifactId: dictionary.artifactId, dictionaryObjects: dictionary.dictionaryObjects})
     });
   }
   
-  fillCard(selectedDocumentId?:number) {
+  fillCard() {
     this.words = [];
     this.dictionary.forEach(dictionary => {
-      if (dictionary.artifactId === selectedDocumentId)
+      if (dictionary.artifactId === this.selectedDocumentId)
         {
           var theWord: string | undefined;
           var theOrigin: string | undefined;

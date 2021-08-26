@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DocumentService } from '../services/document.service';
-import { CardsComponent } from '../cards/cards.component';
-
+import { CardsComponent } from '../cards/cards.component'
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as action from '../actions/documents.actions'
 export interface Doc {
   ArtifactID?: number;
   position: number;
@@ -21,11 +23,10 @@ export class Documents {
 })
 export class TableComponent implements OnInit{
   
-  selectedDocumentId? :number;
+  selectedDocument$?: Observable<any>;
 
   @ViewChild(CardsComponent, {static: false}) child!: CardsComponent;
-
-  document: string = "";
+  
   filledDocs!: Promise<boolean>;
   documents: Documents[] = [];
   docs: Doc[] = [];
@@ -33,7 +34,7 @@ export class TableComponent implements OnInit{
   workspaceId = 1017767;
   showCards:boolean = false;
 
-  constructor(private documentService: DocumentService){ }
+  constructor(private documentService: DocumentService, private store: Store<{ selectedDocument: any }>){ }
 
   ngOnInit() {
     this.documentService.GetDocuments(this.workspaceId).subscribe((x: Documents[]) => {
@@ -56,8 +57,9 @@ export class TableComponent implements OnInit{
   }
   
   GenerateCards(artifactId:number){
-    this.selectedDocumentId = artifactId;
+    this.selectedDocument$ = this.store.pipe(select('selectedDocument'));
+    this.store.dispatch(action.saveSelectedDocumentId({documentId: artifactId}));
     this.showCards = true;
-    this.child.printCards(artifactId);
+    this.child.printCards();
   }
 }
