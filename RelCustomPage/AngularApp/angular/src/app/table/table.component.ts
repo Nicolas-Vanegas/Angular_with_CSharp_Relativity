@@ -44,7 +44,7 @@ export class TableComponent implements OnInit{
       this.fillDocuments(x);
       this.filledDocs = Promise.resolve(true);
     })
-    
+
   }
 
   fillDocuments(documents: Documents[])
@@ -60,6 +60,6 @@ export class TableComponent implements OnInit{
     this.selectedDocument$ = this.store.pipe(select('selectedDocument'));
     this.store.dispatch(action.saveSelectedDocumentId({documentId: artifactId}));
     this.showCards = true;
-    this.child.printCards();
+    this.child?.printCards();
   }
 }
