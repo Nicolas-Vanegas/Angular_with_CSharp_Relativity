@@ -4,6 +4,8 @@ using ConsoleApp1.Domain.DomainNet.Interfaces;
 using ConsoleApp1.Domain.DomainRest.Interfaces;
 using ConsoleApp1.RepositoryRest;
 using ConsoleApp1.Utils;
+using Relativity.Services.Interfaces.Field;
+using Relativity.Services.Objects;
 using System.Collections.Generic;
 
 namespace ConsoleApp1.Domain.DomainRest
@@ -50,34 +52,36 @@ namespace ConsoleApp1.Domain.DomainRest
         public void startApplication()
         {
             //connection
-            //var stringsConnection = new StringsConnection();
-            //var connection = new HttpClientConnection();
-            //var netConnection = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection());
-            //var created = true;
+            var stringsConnection = new StringsConnection();
+            var connection = new HttpClientConnection();
+            var connectionObjectManager = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection()).CreateProxy<IObjectManager>();
+            var connectionFieldManager = ServicesMgr.GetInstance(stringsConnection.GetStringsConnection()).CreateProxy<IFieldManager>();
+            var created = true;
 
             ////Create Instance Setting
-            //if (!created)
-            //{
-            //    var instanceSettingIdRest = _instanceSettingRestService.CreateInstanceSetting(_instanceSettingObject);
-            //}
+            if (!created)
+            {
+                var instancesettingidrest = _instanceSettingRestService.CreateInstanceSetting(_instanceSettingObject);
+            }
 
-            //var pdfDocumentIds = _documentRestService.Documents(_savedSearchId);
-            //var documentTextsRest = _documentRestService.DocumentTexts(pdfDocumentIds);
-            //var wordLengthRest = _instanceSettingRestService.GetInstanceSettingValue(Constants.INSTANCE_SETTING_ID);
+            var pdfdocumentids = _documentRestService.Documents(_savedSearchId);
+            var documentTextsRest = _documentRestService.DocumentTexts(pdfdocumentids);
+            var wordLengthRest = _instanceSettingRestService.GetInstanceSettingValue(Constants.INSTANCE_SETTING_ID);
 
             ////Filter the words
-            //var filteredWordsRest = _words.filteredWords(documentTextsRest, wordLengthRest);
-            //var duplicateWordFilter = _words.duplicateWordFilter(filteredWordsRest);
+            var filteredWordsRest = _words.filteredWords(documentTextsRest, wordLengthRest);
+            var duplicateWordFilter = _words.duplicateWordFilter(filteredWordsRest);
 
             ////Create ObjectType and theirs fields
-            //if (created)
-            //{
-            //    _objectTypeRestService.CreateObjectType(connection);
-            //    _fieldNetService.CreateLongTextField(netConnection, _longTextFieldName);
-            //    _fieldRestService.CreateMultiObjectField(connection, _multiObjectFieldName);
-            //}
-            ////Create Word Found objects
-            //_wordFoundNetService.CreateWordFoundObject(netConnection, duplicateWordFilter, wordLengthRest);
+            if (created)
+            {
+                _objectTypeRestService.CreateObjectType(connection);
+                _fieldNetService.CreateLongTextField(connectionFieldManager, _longTextFieldName);
+                _fieldRestService.CreateMultiObjectField(connection, _multiObjectFieldName);
+
+                ////Create Word Found objects
+                _wordFoundNetService.CreateWordFoundObject(connectionObjectManager, duplicateWordFilter, wordLengthRest);
+            }
         }
     }
 }
